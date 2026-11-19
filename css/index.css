@@ -3259,3 +3259,86 @@ main {
         transform: none;
     }
 }
+
+
+/* ========================================
+   CORREÇÃO GLOBAL DE RESPONSIVIDADE
+======================================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: clip;
+}
+
+/* Padronizar dimensões */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Seções ocupando toda a largura */
+
+.site-header,
+main,
+.hero,
+.benefits,
+.solutions,
+.usage-section,
+.site-footer {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* Imagens não ultrapassam seu container */
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ========================================
+   AJUSTES MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .hero-container,
+    .benefits-container,
+    .solutions-container,
+    .usage-container,
+    .footer-container {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Flexbox e Grid não forçam
+       largura maior que a tela */
+
+    .hero-content,
+    .benefits-grid,
+    .solutions-grid,
+    .solution-card,
+    .solution-content,
+    .usage-carousel,
+    .usage-stage,
+    .footer-grid {
+        min-width: 0;
+    }
+
+    /* Mantém o carrossel dentro da seção */
+
+    .usage-stage {
+        overflow: hidden;
+    }
+}
