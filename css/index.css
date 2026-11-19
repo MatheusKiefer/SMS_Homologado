@@ -1,0 +1,3190 @@
+
+/* ========================================
+   CONFIGURAÇÕES GLOBAIS
+======================================== */
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ========================================
+   CABEÇALHO - SMS HOMOLOGADO
+======================================== */
+
+/* Estrutura principal */
+.site-header {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #edf0f4;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position:relative;
+    z-index: 1000;
+}
+
+/* Navegação */
+.site-nav {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 78px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* ========================================
+   LOGOTIPO
+======================================== */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.brand img {
+    display: block;
+    width: auto;
+    height: 54px;
+    max-width: 180px;
+    object-fit: contain;
+}
+
+/* ========================================
+   LINKS DE NAVEGAÇÃO
+======================================== */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 38px;
+    background-color: transparent;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #071a41;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+    background: transparent;
+    box-shadow: none;
+
+    /* Sombra somente nas letras */
+    text-shadow: 0 5px 6px rgba(0, 33, 141, 0.15);
+
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: #009b48;
+}
+
+/* ========================================
+   BOTÃO CONTRATE AGORA
+======================================== */
+
+.btn-quote {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 25px;
+    min-height: 46px;
+    background-color: #008d3f;
+    color: #ffffff;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 7px 7px rgba(0, 141, 63, 0.38);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-quote:hover {
+    background-color: #007a36;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 141, 63, 0.22);
+}
+
+.btn-quote:focus-visible,
+.menu-toggle:focus-visible {
+    outline: 3px solid #f5bb13;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   MENU MOBILE
+======================================== */
+
+.menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+
+    background-color: #071a41;
+    border-radius: 2px;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.menu-icon {
+    position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.menu-icon::before {
+    transform: translateY(-7px);
+}
+
+.menu-icon::after {
+    transform: translateY(7px);
+}
+
+/* Estado aberto do botão */
+.menu-toggle[aria-expanded="true"] .menu-icon {
+    background-color: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon::before {
+    transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon::after {
+    transform: rotate(-45deg);
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLETS
+======================================== */
+
+@media (max-width: 900px) {
+
+    .site-nav {
+        width: 92%;
+        gap: 14px;
+    }
+
+    .brand {
+        margin-right: auto;
+    }
+
+    .brand img {
+        height: 46px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+
+        padding: 12px 5% 20px;
+        background-color: #ffffff;
+
+        border-top: 1px solid #edf0f4;
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 14px 10px;
+        font-size: 15px;
+    }
+
+    .nav-links li + li {
+        border-top: 1px solid #f1f3f5;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 480px) {
+
+    .site-nav {
+        width: calc(100% - 24px);
+        min-height: 68px;
+        gap: 8px;
+    }
+
+    .brand img {
+        height: 39px;
+        max-width: 125px;
+    }
+
+    .btn-quote {
+        padding: 10px 12px;
+        min-height: 38px;
+        font-size: 12px;
+        border-radius: 7px;
+    }
+
+    .menu-toggle {
+        width: 36px;
+        height: 38px;
+    }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav-links a,
+    .btn-quote,
+    .menu-icon,
+    .menu-icon::before,
+    .menu-icon::after {
+        transition: none;
+    }
+}
+
+
+/* ========================================
+   HERO - SMS HOMOLOGADO
+======================================== */
+
+.hero {
+    width: 100%;
+    background-color: #ffffff;
+    overflow: hidden;
+    padding: 55px 0 65px;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+======================================== */
+
+.hero-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+/* ========================================
+   CONTEÚDO À ESQUERDA
+======================================== */
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+/* Identificação superior */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 20px;
+
+    color: #008d3f;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Bolinha verde */
+
+.hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+
+    background-color: #0ca74b;
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 4px rgba(12, 167, 75, 0.12);
+}
+
+/* ========================================
+   TÍTULO PRINCIPAL
+======================================== */
+
+.hero-title {
+    margin: 0;
+
+    color: #0c1c4b;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+}
+
+/* Destaque verde */
+
+.hero-title-highlight {
+    display: block;
+    color: #008d3f;
+    margin-top: 4px;
+}
+
+/* ========================================
+   LINHA DECORATIVA AMARELA
+======================================== */
+
+.hero-divider {
+    width: 300px;
+    height: 3px;
+
+    margin-top: 20px;
+    margin-bottom: 18px;
+
+    background-color: #ffba08;
+    border-radius: 4px;
+}
+
+/* ========================================
+   DESCRIÇÃO
+======================================== */
+
+.hero-description {
+    max-width: 440px;
+    margin: 0;
+
+    color: #24385e;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+/* ========================================
+   BOTÕES
+======================================== */
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+/* Botão principal */
+
+.hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 44px;
+    padding: 0px 22px;
+
+    background-color: #008d3f;
+    color: #ffffff;
+
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+
+    border: 2px solid #008d3f;
+    border-radius: 18px;
+
+    box-shadow: 0 6px 15px rgba(0, 141, 63, 0.20);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.hero-btn-primary:hover {
+    background-color: #007a36;
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0, 141, 63, 0.30);
+}
+
+/* Seta do botão */
+
+.hero-btn-primary span {
+    font-size: 32px;
+    line-height: 1;
+}
+
+/* ========================================
+   BOTÃO SECUNDÁRIO
+======================================== */
+
+.hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 0px 22px;
+
+    background-color: #ffffff;
+    color: #071a41;
+
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+
+    border: 2px solid #1644a0;
+    border-radius: 18px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.hero-btn-secondary:hover {
+    background-color: #071a41;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Foco para acessibilidade */
+
+.hero-actions a:focus-visible {
+    outline: 3px solid #ffba08;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   ILUSTRAÇÃO À DIREITA
+======================================== */
+
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.hero-image {
+    display: block;
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+/* ========================================
+   RESPONSIVIDADE - NOTEBOOKS
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .hero-container {
+        gap: 25px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLETS
+======================================== */
+
+@media (max-width: 900px) {
+
+    .hero {
+        padding: 45px 0 55px;
+    }
+
+    .hero-container {
+        width: 92%;
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .hero-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: clamp(34px, 6vw, 46px);
+    }
+
+    .hero-divider {
+        margin-top: 20px;
+    }
+
+    .hero-description {
+        max-width: 540px;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-image {
+        max-width: 520px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 480px) {
+
+    .hero {
+        padding: 35px 0 45px;
+    }
+
+    .hero-container {
+        width: calc(100% - 32px);
+        gap: 25px;
+    }
+
+    .hero-badge {
+        font-size: 9px;
+        letter-spacing: 0.2px;
+        margin-bottom: 18px;
+    }
+
+    .hero-title {
+        font-size: clamp(30px, 8vw, 38px);
+        line-height: 1.13;
+        letter-spacing: -1px;
+    }
+
+    .hero-title br {
+        display: none;
+    }
+
+    .hero-title-highlight {
+        margin-top: 6px;
+    }
+
+    .hero-divider {
+        margin-top: 20px;
+        margin-bottom: 16px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .hero-actions {
+        width: 100%;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        width: 100%;
+        padding: 14px 18px;
+    }
+
+    /* OCULTAR IMAGEM DO SMARTPHONE */
+
+    .hero-visual {
+        display: none;
+    }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        transition: none;
+    }
+}
+
+
+/* ========================================
+   BENEFÍCIOS - SMS HOMOLOGADO
+======================================== */
+
+/* Seção principal */
+
+.benefits {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 100px 0 100px;
+}
+
+/* Container */
+
+.benefits-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   TÍTULO DA SEÇÃO
+======================================== */
+
+.benefits-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.benefits-header h2 {
+    margin: 0;
+
+    color: #0c1c4b;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+/* Linha amarela */
+
+.benefits-divider {
+    display: block;
+
+    width: 500px;
+    height: 3px;
+
+    margin-top: 16px;
+
+    background-color: #ffba08;
+    border-radius: 4px;
+}
+
+/* ========================================
+   GRID DE CARDS
+======================================== */
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+/* ========================================
+   CARDS
+======================================== */
+
+.benefit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-width: 0;
+    min-height: 150px;
+    padding: 20px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+
+    box-shadow: 0 8px 24px rgba(12, 28, 75, 0.15);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* Efeito ao passar o mouse */
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #c5efd5;
+
+    box-shadow: 0 14px 30px rgba(12, 28, 75, 0.13);
+}
+
+/* ========================================
+   ÍCONES
+======================================== */
+
+.benefit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+
+    margin-bottom: 14px;
+
+    background-color: #d9f8e5;
+    color: #009447;
+
+    border-radius: 13px;
+}
+
+/* SVG dos ícones */
+
+.benefit-icon svg {
+    width: 28px;
+    height: 28px;
+
+    stroke: currentColor;
+    stroke-width: 2;
+
+    transition: transform 0.25s ease;
+}
+
+/* Animação dos ícones */
+
+.benefit-card:hover .benefit-icon svg {
+    transform: scale(1.12);
+}
+
+/* ========================================
+   TÍTULOS DOS CARDS
+======================================== */
+
+.benefit-card h3 {
+    margin: 0 0 8px;
+
+    color: #0c1c4b;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.6;
+    letter-spacing: -0.5px;
+}
+
+/* ========================================
+   DESCRIÇÕES DOS CARDS
+======================================== */
+
+.benefit-card p {
+    margin: 0;
+
+    color: #24385e;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+/* ========================================
+   RESPONSIVIDADE - NOTEBOOKS
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .benefits-grid {
+        gap: 14px;
+    }
+
+    .benefit-card {
+        padding: 18px;
+    }
+
+    .benefit-card h3 {
+        font-size: 15px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLETS
+======================================== */
+
+@media (max-width: 900px) {
+
+    .benefits {
+        padding: 55px 0 70px;
+    }
+
+    .benefits-container {
+        width: 92%;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .benefit-card {
+        min-height: 180px;
+        padding: 22px;
+    }
+
+    .benefits-header h2 {
+        font-size: 30px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 480px) {
+
+    .benefits {
+        padding: 45px 0 60px;
+    }
+
+    .benefits-container {
+        width: calc(100% - 32px);
+    }
+
+    .benefits-header {
+        margin-bottom: 28px;
+    }
+
+    .benefits-header h2 {
+        font-size: 26px;
+        line-height: 1.25;
+        letter-spacing: -0.7px;
+    }
+
+    .benefits-divider {
+        margin-top: 14px;
+    }
+
+    /* Cards empilhados */
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .benefit-card {
+        min-height: auto;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .benefit-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 12px;
+    }
+
+    .benefit-icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .benefit-card h3 {
+        font-size: 16px;
+    }
+
+    .benefit-card p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .benefit-card,
+    .benefit-icon svg {
+        transition: none;
+    }
+
+    .benefit-card:hover,
+    .benefit-card:hover .benefit-icon svg {
+        transform: none;
+    }
+}
+
+
+/* ========================================
+   SOLUÇÕES - SMS HOMOLOGADO
+======================================== */
+
+/* Seção principal */
+
+.solutions {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 65px 0 85px;
+
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.solutions,
+.solutions * {
+    box-sizing: border-box;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+======================================== */
+
+.solutions-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   TÍTULO DA SEÇÃO
+======================================== */
+
+.solutions-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 32px;
+}
+
+.solutions-header h2 {
+    margin: 0;
+
+    color: #0c1c4b;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+/* LINHA AMARELA */
+
+.solutions-divider {
+    display: block;
+
+    width: 66px;
+    height: 3px;
+    margin-top: 14px;
+
+    background-color: #ffba08;
+    border-radius: 4px;
+}
+
+/* ========================================
+   GRID DOS CARDS
+======================================== */
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* ========================================
+   ESTRUTURA DOS CARDS
+======================================== */
+
+.solution-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    padding: 22px 20px;
+
+    border: 1px solid #c6e4ff;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 22px rgba(12, 28, 75, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.solution-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 14px 30px rgba(12, 28, 75, 0.14);
+}
+
+/* ========================================
+   CORES DOS CARDS
+======================================== */
+
+/* SMS */
+
+.solution-sms {
+    background-color: #f0f8ff;
+    border-color: #c6e4ff;
+}
+
+.solution-sms:hover {
+    border-color: #86c6ff;
+}
+
+/* RCS */
+
+.solution-rcs {
+    background-color: #f0fcf4;
+    border-color: #c6f0d5;
+}
+
+.solution-rcs:hover {
+    border-color: #8bdfaa;
+}
+
+/* E-MAIL */
+
+.solution-email {
+    background-color: #ecf6ff;
+    border-color: #c6e4ff;
+}
+
+.solution-email:hover {
+    border-color: #86c6ff;
+}
+
+/* ========================================
+   CONTEÚDO SUPERIOR DOS CARDS
+======================================== */
+
+.solution-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+
+    width: 100%;
+    min-height: 140px;
+}
+
+/* ========================================
+   ÍCONES
+======================================== */
+
+.solution-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    border-radius: 13px;
+
+    box-shadow:
+        0 5px 12px rgba(0, 0, 0, 0.09);
+}
+
+/* ÍCONE SMS */
+
+.solution-sms .solution-icon {
+    background: linear-gradient(
+        145deg,
+        #00b0ff,
+        #0055e8
+    );
+}
+
+/* ÍCONE RCS */
+
+.solution-rcs .solution-icon {
+    background: linear-gradient(
+        145deg,
+        #43d44b,
+        #00a66c
+    );
+}
+
+/* ÍCONE E-MAIL */
+
+.solution-email .solution-icon {
+    background: linear-gradient(
+        145deg,
+        #00b0ff,
+        #0055e8
+    );
+}
+
+/* SVG DOS ÍCONES */
+
+.solution-icon svg {
+    width: 30px;
+    height: 30px;
+
+    stroke: currentColor;
+    stroke-width: 2;
+
+    transition: transform 0.25s ease;
+}
+
+.solution-card:hover .solution-icon svg {
+    transform: scale(1.1);
+}
+
+/* ========================================
+   TÍTULOS E TEXTOS ORIGINAIS
+======================================== */
+
+.solution-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+/* TÍTULO */
+
+.solution-content h3 {
+    margin: 2px 0 8px;
+
+    color: #0c1c4b;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+/* DESCRIÇÃO ORIGINAL */
+
+.solution-content p {
+    margin: 0;
+
+    color: #24385e;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.65;
+}
+
+/* ========================================
+   IMAGEM + NOVA DESCRIÇÃO
+======================================== */
+
+.solution-example {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+}
+
+/* ========================================
+   IMAGEM ILUSTRATIVA
+======================================== */
+
+.solution-image {
+    display: block;
+
+    width: 100%;
+    height: 220px;
+
+    padding: 0px;
+    margin: 0 auto;
+
+    object-fit: contain;
+    object-position: center;
+
+    background-color: transparent;
+    border-radius: 12px;
+
+    transition: transform 0.3s ease;
+}
+
+/* LEVE EFEITO NA IMAGEM */
+
+.solution-card:hover .solution-image {
+    transform: scale(1.02);
+}
+
+/* ========================================
+   NOVA DESCRIÇÃO ABAIXO DA IMAGEM
+======================================== */
+
+.solution-example figcaption {
+    margin-top: 18px;
+
+    color: #24385e;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.7;
+    text-align: left;
+}
+
+/* ========================================
+   RESPONSIVIDADE - NOTEBOOKS
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .solutions-grid {
+        gap: 14px;
+    }
+
+    .solution-card {
+        padding: 20px 16px;
+    }
+
+    .solution-top {
+        gap: 14px;
+        min-height: 150px;
+    }
+
+    .solution-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .solution-content h3 {
+        font-size: 20px;
+    }
+
+    .solution-image {
+        height: 200px;
+    }
+
+    .solution-example figcaption {
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLETS
+======================================== */
+
+@media (max-width: 900px) {
+
+    .solutions {
+        padding: 55px 0 70px;
+    }
+
+    .solutions-container {
+        width: 92%;
+    }
+
+    .solutions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .solution-card {
+        padding: 22px;
+    }
+
+    .solution-top {
+        min-height: 130px;
+    }
+
+    .solution-image {
+        height: 220px;
+    }
+
+    .solutions-header h2 {
+        font-size: 32px;
+    }
+
+    /* TERCEIRO CARD OCUPA A LINHA INTEIRA */
+
+    .solution-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+
+    .solutions {
+        padding: 45px 0 60px;
+    }
+
+    .solutions-container {
+        width: calc(100% - 32px);
+    }
+
+    .solutions-header {
+        margin-bottom: 26px;
+    }
+
+    .solutions-header h2 {
+        font-size: 28px;
+        letter-spacing: -0.7px;
+    }
+
+    /* CARDS EMPILHADOS */
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .solution-card,
+    .solution-card:last-child {
+        grid-column: auto;
+        padding: 20px;
+    }
+
+    /* CONTEÚDO SUPERIOR */
+
+    .solution-top {
+        min-height: auto;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .solution-icon {
+        width: 52px;
+        height: 52px;
+    }
+
+    .solution-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .solution-content h3 {
+        margin-top: 0;
+        font-size: 20px;
+    }
+
+    .solution-content p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* IMAGEM */
+
+    .solution-image {
+        height: 230px;
+        padding: 8px;
+    }
+
+    /* DESCRIÇÃO */
+
+    .solution-example figcaption {
+        margin-top: 16px;
+        font-size: 13px;
+        line-height: 1.65;
+    }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .solution-card,
+    .solution-icon svg,
+    .solution-image {
+        transition: none;
+    }
+
+    .solution-card:hover,
+    .solution-card:hover .solution-icon svg,
+    .solution-card:hover .solution-image {
+        transform: none;
+    }
+}
+
+/* ========================================
+   EXEMPLOS DE USO - SMS HOMOLOGADO
+======================================== */
+
+.usage-section {
+    width: 100%;
+    padding: 100px 0 100px;
+    background-color: #ffffff;
+    overflow: hidden;
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.usage-section,
+.usage-section * {
+    box-sizing: border-box;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+======================================== */
+
+.usage-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   TÍTULO DA SEÇÃO
+======================================== */
+
+.usage-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.usage-header h2 {
+    margin: 0;
+
+    color: #0c1c4b;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+/* Linha amarela */
+
+.usage-divider {
+    display: block;
+    width: 500px;
+    height: 3px;
+
+    margin-top: 15px;
+
+    background-color: #ffba08;
+    border-radius: 4px;
+}
+
+.usage-header p {
+    max-width: 550px;
+    margin: 20px 0 0;
+
+    color: #42516d;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ========================================
+   ESTRUTURA DO CARROSSEL
+======================================== */
+
+.usage-carousel {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Área de visualização */
+
+.usage-stage {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 400px;
+
+    perspective: 1100px;
+    perspective-origin: center;
+    overflow: hidden;
+}
+
+/* Container dos cards */
+
+.usage-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+}
+
+/* ========================================
+   CARDS DO CARROSSEL
+======================================== */
+
+.usage-card {
+    --offset: 0;
+    --distance: 0;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 270px;
+    min-height: 325px;
+    padding: 25px 22px;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f3fbf6
+    );
+
+    border: 1px solid #dce8e1;
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 25px rgba(12, 28, 75, 0.12);
+
+    text-align: center;
+
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+
+    transform:
+        translate(-50%, -50%)
+        translateX(
+            calc(
+                var(--offset) *
+                clamp(85px, 10vw, 140px)
+            )
+        )
+        translateZ(
+            calc(var(--distance) * -40px)
+        )
+        rotateY(
+            calc(var(--offset) * -9deg)
+        )
+        scale(
+            calc(1 - var(--distance) * 0.09)
+        );
+
+    z-index: calc(10 - var(--distance));
+
+    opacity: clamp(
+        0,
+        calc(3 - var(--distance)),
+        1
+    );
+
+    transition:
+        transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.45s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* ========================================
+   POSIÇÕES INICIAIS
+======================================== */
+
+/*
+   O quarto card começa centralizado.
+   O JavaScript atualizará essas variáveis
+   durante a navegação.
+*/
+
+.usage-card:nth-child(1) {
+    --offset: -3;
+    --distance: 3;
+}
+
+.usage-card:nth-child(2) {
+    --offset: -2;
+    --distance: 2;
+}
+
+.usage-card:nth-child(3) {
+    --offset: -1;
+    --distance: 1;
+}
+
+.usage-card:nth-child(4) {
+    --offset: 0;
+    --distance: 0;
+}
+
+.usage-card:nth-child(5) {
+    --offset: 1;
+    --distance: 1;
+}
+
+.usage-card:nth-child(6) {
+    --offset: 2;
+    --distance: 2;
+}
+
+.usage-card:nth-child(7) {
+    --offset: 3;
+    --distance: 3;
+}
+
+.usage-card:nth-child(8) {
+    --offset: 4;
+    --distance: 4;
+}
+
+/* ========================================
+   CARD CENTRAL EM DESTAQUE
+======================================== */
+
+.usage-card.is-active {
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #eaf9f0
+    );
+
+    border: 2px solid #0ca74b;
+
+    box-shadow:
+        0 15px 35px rgba(0, 141, 63, 0.20);
+
+    z-index: 20;
+}
+
+/* ========================================
+   IDENTIFICAÇÃO DOS CRÉDITOS
+======================================== */
+
+.usage-card-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 15px;
+    margin-bottom: 16px;
+
+    background-color: #d9f8e5;
+    color: #008d3f;
+
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    border-radius: 30px;
+}
+
+/* ========================================
+   VALOR DOS CRÉDITOS
+======================================== */
+
+.usage-card h3 {
+    margin: 0 0 22px;
+
+    color: #0c1c4b;
+
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* Valor do card central */
+
+.usage-card.is-active h3 {
+    color: #008d3f;
+}
+
+/* ========================================
+   LISTA SMS / RCS / E-MAIL
+======================================== */
+
+.usage-card ul {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.usage-card li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 14px 4px;
+
+    border-bottom: 1px solid #e2eae5;
+}
+
+.usage-card li:last-child {
+    border-bottom: none;
+}
+
+/* Nome do serviço */
+
+.usage-card li span {
+    color: #24385e;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Quantidade de envios */
+
+.usage-card li strong {
+    color: #008d3f;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   BOTÃO WHATSAPP
+======================================== */
+
+.usage-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 43px;
+    margin-top: auto;
+    padding: 12px 15px;
+
+    background-color: #008d3f;
+    color: #ffffff;
+
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+    border: none;
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 14px rgba(0, 141, 63, 0.20);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Ícone */
+
+.usage-whatsapp svg {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+
+    transition:
+        opacity 0.3s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Efeito hover */
+
+.usage-whatsapp:hover {
+    background-color: #007a36;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(0, 141, 63, 0.30);
+}
+
+/* Acessibilidade */
+
+.usage-whatsapp:focus-visible {
+    outline: 3px solid #ffba08;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   WHATSAPP - SOMENTE NO CARD ATIVO
+======================================== */
+
+/* Oculta o botão nos demais cards */
+
+.usage-card .usage-whatsapp {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Exibe somente no card em destaque */
+
+.usage-card.is-active .usage-whatsapp {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ========================================
+   BOTÕES DE NAVEGAÇÃO
+======================================== */
+
+.usage-prev,
+.usage-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    background-color: #ffffff;
+    color: #008d3f;
+
+    border: 1px solid #d6e7dc;
+    border-radius: 50%;
+
+    font-size: 21px;
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(12, 28, 75, 0.10);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    z-index: 30;
+}
+
+.usage-prev:hover,
+.usage-next:hover {
+    background-color: #008d3f;
+    color: #ffffff;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 6px 18px rgba(0, 141, 63, 0.25);
+}
+
+.usage-prev:focus-visible,
+.usage-next:focus-visible,
+.usage-btn:focus-visible {
+    outline: 3px solid #ffba08;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   CONTADOR DE NAVEGAÇÃO
+======================================== */
+
+.usage-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+}
+
+.usage-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 18px;
+
+    background-color: #f0f8f3;
+    color: #008d3f;
+
+    border: 1px solid #d6eddf;
+    border-radius: 25px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ========================================
+   OBSERVAÇÃO SOBRE OS CRÉDITOS
+======================================== */
+
+.usage-note {
+    max-width: 600px;
+
+    margin: 25px auto 0;
+
+    color: #64748b;
+    text-align: center;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ========================================
+   BOTÃO DE ACESSO À PLATAFORMA
+======================================== */
+
+.usage-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 25px;
+}
+
+.usage-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 14px 26px;
+
+    background-color: #008d3f;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 6px 15px rgba(0, 141, 63, 0.25);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.usage-btn:hover {
+    background-color: #007a36;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 141, 63, 0.35);
+}
+
+/* ========================================
+   RESPONSIVIDADE - NOTEBOOKS
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .usage-stage {
+        height: 380px;
+    }
+
+    .usage-card {
+        width: 250px;
+        min-height: 315px;
+        padding: 23px 20px;
+    }
+
+    .usage-card h3 {
+        font-size: 24px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLETS
+======================================== */
+
+@media (max-width: 900px) {
+
+    .usage-section {
+        padding: 55px 0 70px;
+    }
+
+    .usage-container {
+        width: 92%;
+    }
+
+    .usage-stage {
+        height: 370px;
+    }
+
+    .usage-card {
+        width: 235px;
+        min-height: 305px;
+    }
+
+    .usage-card h3 {
+        font-size: 23px;
+    }
+
+    .usage-prev,
+    .usage-next {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+
+    .usage-section {
+        padding: 45px 0 60px;
+    }
+
+    .usage-container {
+        width: calc(100% - 20px);
+    }
+
+    .usage-header {
+        margin-bottom: 20px;
+    }
+
+    .usage-header h2 {
+        font-size: 28px;
+    }
+
+    .usage-header p {
+        padding: 0 10px;
+        font-size: 13px;
+    }
+
+    .usage-carousel {
+        gap: 4px;
+    }
+
+    .usage-stage {
+        height: 365px;
+    }
+
+    .usage-card {
+        width: min(68vw, 245px);
+        min-height: 300px;
+        padding: 22px 16px;
+
+        transform:
+            translate(-50%, -50%)
+            translateX(
+                calc(var(--offset) * 95px)
+            )
+            translateZ(
+                calc(var(--distance) * -35px)
+            )
+            rotateY(
+                calc(var(--offset) * -9deg)
+            )
+            scale(
+                calc(1 - var(--distance) * 0.10)
+            );
+    }
+
+    .usage-card-label {
+        font-size: 10px;
+        margin-bottom: 15px;
+    }
+
+    .usage-card h3 {
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .usage-card li {
+        padding: 13px 2px;
+    }
+
+    .usage-card li span {
+        font-size: 12px;
+    }
+
+    .usage-card li strong {
+        font-size: 14px;
+    }
+
+    .usage-prev,
+    .usage-next {
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+    }
+
+    .usage-navigation {
+        margin-top: 5px;
+    }
+
+    .usage-note {
+        margin-top: 22px;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+    .usage-actions {
+        margin-top: 22px;
+    }
+
+    .usage-btn {
+        padding: 14px 22px;
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE BOTÕES WHATSAPP E NAVEGAÇÃO
+======================================== */
+
+@media (max-width: 900px) {
+
+    .usage-stage {
+        height: 430px;
+    }
+
+    .usage-card {
+        min-height: 370px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .usage-stage {
+        height: 430px;
+    }
+
+    .usage-card {
+        min-height: 365px;
+    }
+
+    .usage-whatsapp {
+        padding: 11px 9px;
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    .usage-whatsapp svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .usage-whatsapp {
+        transition: none;
+    }
+
+    .usage-whatsapp:hover {
+        transform: none;
+    }
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .usage-card,
+    .usage-prev,
+    .usage-next,
+    .usage-btn {
+        transition: none;
+    }
+}
+
+
+/* ========================================
+   BOTÃO VOLTAR AO TOPO
+======================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+
+    background-color: #008d3f;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 50px;
+
+    box-shadow: 0 6px 18px rgba(0, 141, 63, 0.35);
+
+    cursor: pointer;
+    z-index: 9999;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Garantir que o atributo hidden seja respeitado */
+
+.back-to-top[hidden] {
+    display: none;
+}
+
+/* Efeito ao passar o mouse */
+
+.back-to-top:hover {
+    background-color: #007a36;
+    transform: translateY(-4px);
+
+    box-shadow: 0 9px 22px rgba(0, 141, 63, 0.45);
+}
+
+/* Ícone da seta */
+
+.back-to-top svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Acessibilidade */
+
+.back-to-top:focus-visible {
+    outline: 3px solid #ffba08;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .back-to-top {
+        width: 44px;
+        height: 44px;
+
+        bottom: 20px;
+        right: 20px;
+
+        border-radius: 10px;
+    }
+
+    .back-to-top svg {
+        width: 21px;
+        height: 21px;
+    }
+}
+
+/* ========================================
+   MOVIMENTO REDUZIDO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .back-to-top {
+        transition: none;
+    }
+
+    .back-to-top:hover {
+        transform: none;
+    }
+}
+
+
+/* ========================================
+   MODAL DE CONTRATAÇÃO
+======================================== */
+
+.contract-modal {
+    width: min(92%, 460px);
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+
+    background-color: #ffffff;
+
+    border: none;
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 60px rgba(12, 28, 75, 0.20);
+
+    overflow-y: auto;
+}
+
+/* Fundo escurecido */
+
+.contract-modal::backdrop {
+    background: rgba(7, 26, 65, 0.60);
+    backdrop-filter: blur(4px);
+}
+
+/* Formulário */
+
+.contract-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 32px;
+
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ========================================
+   CABEÇALHO DO MODAL
+======================================== */
+
+.contract-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.contract-header h2 {
+    margin: 0 0 8px;
+
+    color: #0c1c4b;
+
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -0.7px;
+}
+
+.contract-header p {
+    margin: 0;
+
+    color: #42516d;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Botão fechar */
+
+.contract-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+
+    background: #f1f5f9;
+    color: #42516d;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.contract-close:hover {
+    background-color: #e2e8f0;
+    color: #0c1c4b;
+}
+
+/* ========================================
+   CAMPOS DO FORMULÁRIO
+======================================== */
+
+.contract-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contract-field label {
+    color: #0c1c4b;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.contract-field input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+
+    background-color: #ffffff;
+    color: #0c1c4b;
+
+    border: 1px solid #dce3ed;
+    border-radius: 9px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.contract-field input::placeholder {
+    color: #94a3b8;
+}
+
+.contract-field input:focus {
+    border-color: #008d3f;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 141, 63, 0.12);
+}
+
+/* ========================================
+   BOTÃO AVANÇAR
+======================================== */
+
+.contract-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 20px;
+
+    background-color: #008d3f;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(0, 141, 63, 0.25);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.contract-submit:hover {
+    background-color: #007a36;
+    transform: translateY(-2px);
+}
+
+/* Observação */
+
+.contract-note {
+    margin: -5px 0 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Foco acessível */
+
+.contract-close:focus-visible,
+.contract-submit:focus-visible {
+    outline: 3px solid #ffba08;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 480px) {
+
+    .contract-modal {
+        width: calc(100% - 28px);
+        border-radius: 16px;
+    }
+
+    .contract-form {
+        padding: 24px 20px;
+        gap: 18px;
+    }
+
+    .contract-header h2 {
+        font-size: 22px;
+    }
+
+    .contract-submit {
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contract-submit,
+    .contract-field input {
+        transition: none;
+    }
+
+    .contract-submit:hover {
+        transform: none;
+    }
+}
+
+
+/* ========================================
+   RODAPÉ - SMS HOMOLOGADO
+======================================== */
+
+.site-footer {
+    width: 100%;
+    padding: 65px 0 25px;
+
+    background-color: #0c1c4b;
+    color: #ffffff;
+
+    font-family: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.site-footer,
+.site-footer * {
+    box-sizing: border-box;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+======================================== */
+
+.footer-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   GRID PRINCIPAL
+======================================== */
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* ========================================
+   LOGOTIPO DA EMPRESA
+======================================== */
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 18px;
+    margin-bottom: 18px;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    transition: transform 0.25s ease;
+}
+
+.footer-logo:hover {
+    transform: translateY(-3px);
+}
+
+.footer-logo img {
+    display: block;
+    width: 175px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Descrição da empresa */
+
+.footer-brand p {
+    max-width: 330px;
+    margin: 0;
+
+    color: #c4d0e7;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+/* ========================================
+   TÍTULOS DO RODAPÉ
+======================================== */
+
+.footer-nav h2,
+.footer-contact h2 {
+    margin: 0 0 22px;
+
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+/* ========================================
+   NAVEGAÇÃO
+======================================== */
+
+.footer-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.footer-nav a {
+    display: inline-block;
+
+    color: #c4d0e7;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-nav a:hover {
+    color: #50df93;
+    transform: translateX(4px);
+}
+
+/* ========================================
+   COLUNA DE CONTATO
+======================================== */
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-contact p {
+    max-width: 310px;
+    margin: 0 0 20px;
+
+    color: #c4d0e7;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* ========================================
+   BOTÃO FALAR COM ESPECIALISTA
+======================================== */
+
+.footer-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 46px;
+    padding: 14px 22px;
+
+    background-color: #008d3f;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+    box-shadow:
+        0 6px 15px rgba(0, 141, 63, 0.30);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.footer-contact-btn:hover {
+    background-color: #007a36;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 141, 63, 0.40);
+}
+
+/* Seta */
+
+.footer-contact-btn span {
+    font-size: 19px;
+    line-height: 1;
+}
+
+/* ========================================
+   LINK ACESSAR PLATAFORMA
+======================================== */
+
+.footer-platform-link {
+    display: inline-flex;
+    align-items: center;
+
+    margin-top: 18px;
+
+    color: #50df93;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.footer-platform-link:hover {
+    color: #a5f3c5;
+    text-decoration: underline;
+}
+
+/* ========================================
+   ÁREA REGULATÓRIA - ANATEL
+======================================== */
+
+.footer-regulatory {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    width: 100%;
+    margin-top: 55px;
+    padding: 25px 28px;
+
+    background-color: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+}
+
+/* Container do logotipo da Anatel */
+
+.footer-anatel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 190px;
+    min-height: 90px;
+    padding: 15px;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+/* Imagem da Anatel */
+
+.footer-anatel-logo {
+    display: block;
+
+    width: 100%;
+    max-width: 165px;
+    height: auto;
+    max-height: 75px;
+
+    object-fit: contain;
+}
+
+/* ========================================
+   TEXTO REGULATÓRIO
+======================================== */
+
+.footer-regulatory-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-regulatory-content h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.footer-regulatory-content p {
+    max-width: 650px;
+    margin: 0;
+
+    color: #c4d0e7;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ========================================
+   LINHA DIVISÓRIA
+======================================== */
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+
+    margin-top: 35px;
+    margin-bottom: 25px;
+
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   PARTE INFERIOR DO RODAPÉ
+======================================== */
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #b4c1d8;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Voltar ao início */
+
+.footer-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #b4c1d8;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.footer-back-link:hover {
+    color: #50df93;
+}
+
+.footer-back-link span {
+    font-size: 17px;
+}
+
+/* ========================================
+   ACESSIBILIDADE
+======================================== */
+
+.site-footer a:focus-visible,
+.site-footer button:focus-visible {
+    outline: 3px solid #ffba08;
+    outline-offset: 4px;
+}
+
+/* ========================================
+   RESPONSIVIDADE - NOTEBOOKS
+======================================== */
+
+@media (max-width: 1100px) {
+
+    .footer-grid {
+        gap: 35px;
+    }
+
+    .footer-logo img {
+        width: 155px;
+    }
+
+    .footer-contact-btn {
+        padding: 13px 18px;
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - TABLETS
+======================================== */
+
+@media (max-width: 900px) {
+
+    .site-footer {
+        padding: 55px 0 25px;
+    }
+
+    .footer-container {
+        width: 92%;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 40px 25px;
+    }
+
+    /* Contato ocupa a segunda linha */
+
+    .footer-contact {
+        grid-column: 1 / -1;
+    }
+
+    .footer-regulatory {
+        margin-top: 45px;
+        gap: 20px;
+    }
+
+    .footer-anatel {
+        width: 165px;
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE - CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+
+    .site-footer {
+        padding: 45px 0 25px;
+    }
+
+    .footer-container {
+        width: calc(100% - 32px);
+    }
+
+    /* Colunas empilhadas */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-contact {
+        grid-column: auto;
+    }
+
+    /* Logotipo */
+
+    .footer-logo {
+        padding: 10px 15px;
+    }
+
+    .footer-logo img {
+        width: 160px;
+    }
+
+    .footer-brand p {
+        font-size: 13px;
+    }
+
+    /* Títulos */
+
+    .footer-nav h2,
+    .footer-contact h2 {
+        margin-bottom: 16px;
+        font-size: 16px;
+    }
+
+    /* Botão */
+
+    .footer-contact-btn {
+        width: 100%;
+        max-width: 320px;
+
+        padding: 14px 18px;
+        font-size: 13px;
+    }
+
+    /* ========================================
+       ANATEL - MOBILE
+    ======================================== */
+
+    .footer-regulatory {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+        padding: 22px 18px;
+
+        margin-top: 40px;
+    }
+
+    .footer-anatel {
+        width: 100%;
+        max-width: 220px;
+        min-height: 90px;
+    }
+
+    .footer-anatel-logo {
+        max-width: 175px;
+    }
+
+    .footer-regulatory-content h3 {
+        font-size: 15px;
+    }
+
+    .footer-regulatory-content p {
+        font-size: 12px;
+    }
+
+    /* ========================================
+       PARTE INFERIOR - MOBILE
+    ======================================== */
+
+    .footer-divider {
+        margin-top: 30px;
+        margin-bottom: 22px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .footer-bottom p,
+    .footer-back-link {
+        font-size: 11px;
+    }
+}
+
+/* ========================================
+   MOVIMENTO REDUZIDO
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .footer-logo,
+    .footer-nav a,
+    .footer-contact-btn,
+    .footer-platform-link,
+    .footer-back-link {
+        transition: none;
+    }
+
+    .footer-logo:hover,
+    .footer-nav a:hover,
+    .footer-contact-btn:hover {
+        transform: none;
+    }
+}
