@@ -3290,7 +3290,7 @@ video {
     border-radius: 10px;
     background: #008d3f;
     color: white;
-    font: inherit;
+    font: ui-sans-serif;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
