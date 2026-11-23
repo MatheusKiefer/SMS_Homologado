@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* ========================================
-       3. MODAL DE CONTRATAÇÃO + ONE360 + WHATSAPP
+       3. MODAL DE CONTRATAÇÃO + ONE360 + AGRADECIMENTO
     ======================================== */
 
     const modal = document.querySelector("#contract-modal");
@@ -203,10 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     if (modal && closeButton && form) {
-        // Preencha com o número comercial: DDI + DDD + número, sem símbolos.
-        // Exemplo ilustrativo: "5548999999999".
-        const numeroWhatsapp = "";
-
         const nomeInput = form.querySelector("#contract-name");
         const telefoneInput = form.querySelector("#contract-phone");
         const emailInput = form.querySelector("#contract-email");
@@ -216,19 +212,246 @@ document.addEventListener("DOMContentLoaded", () => {
             let creditoSelecionado = "";
             let enviando = false;
 
+            // Adequa os textos antigos que ainda mencionam WhatsApp no HTML.
+            // Mantém ícones e elementos internos dos botões intactos.
+            function substituirTextoWhatsApp(elemento, novoTexto) {
+                const percorredor = document.createTreeWalker(
+                    elemento,
+                    NodeFilter.SHOW_TEXT
+                );
+
+                while (percorredor.nextNode()) {
+                    const trecho = percorredor.currentNode;
+
+                    if (/whats\s*app/i.test(trecho.nodeValue)) {
+                        trecho.nodeValue = trecho.nodeValue.replace(
+                            /[^\n]*whats\s*app[^\n]*/i,
+                            novoTexto
+                        );
+                    }
+                }
+            }
+
+            substituirTextoWhatsApp(botaoEnviar, "Enviar solicitação");
+
+            openButtons.forEach(botao => {
+                substituirTextoWhatsApp(botao, "Solicitar informações");
+            });
+
             const htmlOriginalBotao = botaoEnviar.innerHTML;
+            const tituloOriginalModal = modal.getAttribute("aria-labelledby");
+
+            /* ========================================
+               4. SOM DE CONFIRMAÇÃO
+            ======================================== */
+
+            // Mude para false caso prefira uma confirmação silenciosa.
+            const SOM_CONFIRMACAO_ATIVO = true;
+
+            let contextoAudioConfirmacao = null;
+
+            // O navegador exige a liberação do áudio durante uma interação
+            // do usuário. Fazemos isso no envio, antes da requisição à API.
+            function prepararSomConfirmacao() {
+                if (!SOM_CONFIRMACAO_ATIVO) return;
+
+                const AudioContextClass =
+                    window.AudioContext || window.webkitAudioContext;
+
+                if (!AudioContextClass) return;
+
+                try {
+                    if (!contextoAudioConfirmacao) {
+                        contextoAudioConfirmacao = new AudioContextClass();
+                    }
+
+                    if (contextoAudioConfirmacao.state === "suspended") {
+                        contextoAudioConfirmacao.resume().catch(() => {});
+                    }
+                } catch (_) {
+                    // Se o dispositivo bloquear áudio, o cadastro continua.
+                }
+            }
+
+            // Som curto e delicado, criado via Web Audio API.
+            // Nenhum arquivo .mp3 é necessário.
+            function tocarSomConfirmacao() {
+                const audio = contextoAudioConfirmacao;
+
+                if (
+                    !SOM_CONFIRMACAO_ATIVO ||
+                    !audio ||
+                    audio.state !== "running"
+                ) return;
+
+                try {
+                    const inicio = audio.currentTime + 0.03;
+
+                    const notas = [
+                        { frequencia: 660, atraso: 0, duracao: 0.14 },
+                        { frequencia: 880, atraso: 0.12, duracao: 0.20 }
+                    ];
+
+                    notas.forEach(nota => {
+                        const oscilador = audio.createOscillator();
+                        const volume = audio.createGain();
+                        const quando = inicio + nota.atraso;
+
+                        oscilador.type = "sine";
+
+                        oscilador.frequency.setValueAtTime(
+                            nota.frequencia,
+                            quando
+                        );
+
+                        volume.gain.setValueAtTime(
+                            0.0001,
+                            quando
+                        );
+
+                        volume.gain.exponentialRampToValueAtTime(
+                            0.025,
+                            quando + 0.025
+                        );
+
+                        volume.gain.exponentialRampToValueAtTime(
+                            0.0001,
+                            quando + nota.duracao
+                        );
+
+                        oscilador.connect(volume);
+                        volume.connect(audio.destination);
+
+                        oscilador.start(quando);
+                        oscilador.stop(quando + nota.duracao + 0.02);
+                    });
+                } catch (_) {
+                    // A confirmação visual funciona mesmo sem som.
+                }
+            }
+
+
+            /* ========================================
+               5. TELA DE AGRADECIMENTO NO MESMO POP-UP
+            ======================================== */
+
+            // Criada via JS para não precisar modificar o HTML existente.
+            const telaSucesso = document.createElement("section");
+
+            telaSucesso.className = "contract-success";
+            telaSucesso.hidden = true;
+
+            telaSucesso.setAttribute(
+                "aria-labelledby",
+                "contract-success-title"
+            );
+
+            telaSucesso.setAttribute(
+                "aria-live",
+                "polite"
+            );
+
+            telaSucesso.innerHTML = `
+                <div class="contract-success-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 6 9 17l-5-5" pathLength="100"></path>
+                    </svg>
+
+                    <span class="contract-success-sparkle sparkle-1"></span>
+                    <span class="contract-success-sparkle sparkle-2"></span>
+                    <span class="contract-success-sparkle sparkle-3"></span>
+                    <span class="contract-success-sparkle sparkle-4"></span>
+                    <span class="contract-success-sparkle sparkle-5"></span>
+                </div>
+
+                <h2 id="contract-success-title">
+                    Solicitação recebida!
+                </h2>
+
+                <p>
+                    Obrigado por compartilhar suas informações.
+                </p>
+
+                <p>
+                    Em breve, um de nossos especialistas entrará
+                    em contato com você.
+                </p>
+
+                <button
+                    type="button"
+                    class="contract-success-close"
+                >
+                    Fechar
+                </button>
+            `;
+
+            modal.appendChild(telaSucesso);
+
+            const fecharSucesso = telaSucesso.querySelector(
+                ".contract-success-close"
+            );
+
+            function mostrarFormulario() {
+                telaSucesso.classList.remove("is-animated");
+                telaSucesso.hidden = true;
+                form.hidden = false;
+
+                if (tituloOriginalModal) {
+                    modal.setAttribute(
+                        "aria-labelledby",
+                        tituloOriginalModal
+                    );
+                } else {
+                    modal.removeAttribute("aria-labelledby");
+                }
+            }
+
+            function mostrarAgradecimento() {
+                // Reinicia a animação a cada envio bem-sucedido.
+                telaSucesso.classList.remove("is-animated");
+
+                form.hidden = true;
+                telaSucesso.hidden = false;
+
+                modal.setAttribute(
+                    "aria-labelledby",
+                    "contract-success-title"
+                );
+
+                // Força o navegador a reconhecer o estado inicial.
+                void telaSucesso.offsetWidth;
+
+                telaSucesso.classList.add("is-animated");
+                fecharSucesso.focus();
+            }
+
+            fecharSucesso.addEventListener("click", () => {
+                modal.close();
+            });
+
+            modal.addEventListener("close", mostrarFormulario);
+
+
+            /* ========================================
+               6. MENSAGENS DE STATUS
+            ======================================== */
 
             // Mensagem de status acessível, criada sem alterar o HTML.
             let feedback = form.querySelector("#contract-feedback");
 
             if (!feedback) {
                 feedback = document.createElement("p");
+
                 feedback.id = "contract-feedback";
                 feedback.setAttribute("role", "status");
                 feedback.setAttribute("aria-live", "polite");
+
                 feedback.style.marginTop = "12px";
                 feedback.style.fontSize = "13px";
                 feedback.style.lineHeight = "1.5";
+
                 form.appendChild(feedback);
             }
 
@@ -239,6 +462,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedback.textContent = mensagem;
                 feedback.style.color = cor;
             }
+
+
+            /* ========================================
+               7. ABERTURA E FECHAMENTO DO MODAL
+            ======================================== */
 
             // Todos os botões abrem o mesmo formulário.
             openButtons.forEach(botao => {
@@ -264,6 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         )
                         : "";
 
+                    mostrarFormulario();
                     form.reset();
 
                     nomeInput.setCustomValidity("");
@@ -290,17 +519,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Evita fechar o formulário durante o envio com ESC.
+            // Evita fechar o formulário durante o envio com a tecla ESC.
             modal.addEventListener("cancel", event => {
                 if (enviando) {
                     event.preventDefault();
                 }
             });
 
+
             /* ========================================
-               MÁSCARA AUTOMÁTICA DE TELEFONE
+               8. MÁSCARA AUTOMÁTICA DE TELEFONE
             ======================================== */
 
+            // Máscara: (48) 98506-7574 ou (48) 3333-4444.
             telefoneInput.addEventListener("input", () => {
                 let numero = telefoneInput.value
                     .replace(/\D/g, "")
@@ -328,8 +559,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 nomeInput.setCustomValidity("");
             });
 
+
             /* ========================================
-               ENVIAR FORMULÁRIO PARA A ONE360
+               9. ENVIAR FORMULÁRIO PARA A ONE360
             ======================================== */
 
             form.addEventListener("submit", async event => {
@@ -340,6 +572,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const nome = nomeInput.value.trim();
                 const telefone = telefoneInput.value.trim();
                 const email = emailInput.value.trim();
+
                 const telefoneNumeros = telefone.replace(/\D/g, "");
 
                 nomeInput.setCustomValidity("");
@@ -370,6 +603,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
+                // Prepara o áudio ainda durante o clique do usuário.
+                prepararSomConfirmacao();
+
                 /* ========================================
                    ESTADO DE ENVIO
                 ======================================== */
@@ -392,7 +628,9 @@ document.addEventListener("DOMContentLoaded", () => {
                        REQUISIÇÃO AO NOSSO SERVIDOR
                     ======================================== */
 
+                    // API local do server.js, sem expor a chave da One360.
                     const resposta = await fetch("/api/leads", {
+
                         method: "POST",
 
                         headers: {
@@ -427,50 +665,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     /* ========================================
-                       PREPARAR MENSAGEM DO WHATSAPP
+                       MOSTRAR AGRADECIMENTO
                     ======================================== */
 
-                    const mensagem = [
-                        "Olá! Gostaria de saber mais sobre os serviços da SMS Homologado.",
-                        "",
+                    // Sem redirecionamento para o WhatsApp.
+                    atualizarFeedback("");
 
-                        ...(creditoSelecionado
-                            ? [
-                                `*Exemplo de uso de interesse:* ${creditoSelecionado}`,
-                                ""
-                            ]
-                            : []),
-
-                        "*Dados para contato:*",
-                        "",
-
-                        `*Nome:* ${nome}`,
-                        `*Telefone:* ${telefone}`,
-                        `*E-mail:* ${email}`,
-                        "",
-
-                        "Poderiam me orientar sobre a contratação?"
-                    ].join("\n");
-
-                    const mensagemCodificada =
-                        encodeURIComponent(mensagem);
-
-                    const linkWhatsapp = numeroWhatsapp
-                        ? `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`
-                        : `https://wa.me/?text=${mensagemCodificada}`;
-
-                    /* ========================================
-                       CONFIRMAÇÃO E REDIRECIONAMENTO
-                    ======================================== */
-
-                    atualizarFeedback(
-                        "Cadastro realizado! Abrindo WhatsApp...",
-                        "#008d3f"
-                    );
-
-                    modal.close();
-
-                    window.location.assign(linkWhatsapp);
+                    mostrarAgradecimento();
+                    tocarSomConfirmacao();
 
                 } catch (erro) {
                     /* ========================================
