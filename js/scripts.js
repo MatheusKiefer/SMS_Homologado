@@ -60,14 +60,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const cards = Array.from(
             carousel.querySelectorAll(".usage-card")
         );
+
         const prevButton = carousel.querySelector(".usage-prev");
         const nextButton = carousel.querySelector(".usage-next");
         const stage = carousel.querySelector(".usage-stage");
         const counter = document.querySelector(".usage-counter");
 
         if (cards.length && prevButton && nextButton && stage) {
-            // A quantidade é detectada automaticamente (atualmente 7 cards).
             const totalCards = cards.length;
+
             let activeIndex = cards.findIndex(card =>
                 card.classList.contains("is-active")
             );
@@ -78,9 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 cards.forEach((card, index) => {
                     let offset = index - activeIndex;
 
-                    // Mantém o carrossel circular.
-                    if (offset > totalCards / 2) offset -= totalCards;
-                    if (offset < -totalCards / 2) offset += totalCards;
+                    if (offset > totalCards / 2) {
+                        offset -= totalCards;
+                    }
+
+                    if (offset < -totalCards / 2) {
+                        offset += totalCards;
+                    }
 
                     const distance = Math.abs(offset);
                     const isActive = index === activeIndex;
@@ -95,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         card.removeAttribute("aria-current");
                     }
 
-                    // O botão WhatsApp só pode ser utilizado no card central.
                     const whatsappButton =
                         card.querySelector(".usage-whatsapp");
 
@@ -115,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
             function selectCard(index) {
                 activeIndex =
                     ((index % totalCards) + totalCards) % totalCards;
+
                 updateCarousel();
             }
 
@@ -143,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             stage.addEventListener("touchstart", event => {
                 if (event.touches.length !== 1) return;
+
                 touchStartX = event.touches[0].clientX;
                 touchStartY = event.touches[0].clientY;
             }, { passive: true });
@@ -156,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const differenceX =
                     touchStartX - event.changedTouches[0].clientX;
+
                 const differenceY =
                     touchStartY - event.changedTouches[0].clientY;
 
@@ -163,7 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     Math.abs(differenceX) > swipeThreshold &&
                     Math.abs(differenceX) > Math.abs(differenceY)
                 ) {
-                    selectCard(activeIndex + (differenceX > 0 ? 1 : -1));
+                    selectCard(
+                        activeIndex + (differenceX > 0 ? 1 : -1)
+                    );
                 }
 
                 touchStartX = null;
@@ -181,100 +190,132 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* ========================================
-       3. BOTÃO VOLTAR AO TOPO
-    ======================================== */
-
-    const backToTop = document.querySelector(".back-to-top");
-    const header = document.querySelector(".site-header");
-
-    if (backToTop && header) {
-        const observer = new IntersectionObserver(entries => {
-            backToTop.hidden = entries[0].isIntersecting;
-        }, { threshold: 0 });
-
-        observer.observe(header);
-
-        backToTop.addEventListener("click", () => {
-            const reducedMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
-
-            window.scrollTo({
-                top: 0,
-                behavior: reducedMotion ? "instant" : "smooth"
-            });
-        });
-    }
-
-
-    /* ========================================
-       4. MODAL DE CONTRATAÇÃO + WHATSAPP
+       3. MODAL DE CONTRATAÇÃO + ONE360 + WHATSAPP
     ======================================== */
 
     const modal = document.querySelector("#contract-modal");
     const closeButton = document.querySelector(".contract-close");
     const form = document.querySelector("#contract-form");
 
-    // Seletor inclui o cabeçalho, os cards e o botão após o carrossel.
-    // .btn-quote também cobre o cabeçalho caso ele ainda seja um <a>.
+    // Inclui botões do cabeçalho, rodapé, cards e fim do carrossel.
     const openButtons = document.querySelectorAll(
         "#open-contract-modal, .btn-quote, .usage-whatsapp, .usage-btn"
     );
 
     if (modal && closeButton && form) {
-        // Quando definido, utilize somente números com DDI e DDD.
-        // Exemplo: "5548999999999".
+        // Preencha com o número comercial: DDI + DDD + número, sem símbolos.
+        // Exemplo ilustrativo: "5548999999999".
         const numeroWhatsapp = "";
 
         const nomeInput = form.querySelector("#contract-name");
         const telefoneInput = form.querySelector("#contract-phone");
         const emailInput = form.querySelector("#contract-email");
+        const botaoEnviar = form.querySelector('button[type="submit"]');
 
-        if (nomeInput && telefoneInput && emailInput) {
+        if (nomeInput && telefoneInput && emailInput && botaoEnviar) {
             let creditoSelecionado = "";
+            let enviando = false;
 
-            // Qualquer um dos três tipos de botão abre o mesmo modal.
+            const htmlOriginalBotao = botaoEnviar.innerHTML;
+
+            // Mensagem de status acessível, criada sem alterar o HTML.
+            let feedback = form.querySelector("#contract-feedback");
+
+            if (!feedback) {
+                feedback = document.createElement("p");
+                feedback.id = "contract-feedback";
+                feedback.setAttribute("role", "status");
+                feedback.setAttribute("aria-live", "polite");
+                feedback.style.marginTop = "12px";
+                feedback.style.fontSize = "13px";
+                feedback.style.lineHeight = "1.5";
+                form.appendChild(feedback);
+            }
+
+            function atualizarFeedback(
+                mensagem,
+                cor = "#24385e"
+            ) {
+                feedback.textContent = mensagem;
+                feedback.style.color = cor;
+            }
+
+            // Todos os botões abrem o mesmo formulário.
             openButtons.forEach(botao => {
                 botao.addEventListener("click", event => {
                     event.preventDefault();
 
+                    if (enviando) return;
+
                     const card = botao.closest(".usage-card");
-                    // Só recebe crédito quando o clique veio do card ativo.
-                    if (card && !card.classList.contains("is-active")) {
+
+                    // Apenas o card central pode iniciar contratação.
+                    if (
+                        card &&
+                        !card.classList.contains("is-active")
+                    ) {
                         return;
                     }
 
                     creditoSelecionado = card
-                        ? (card.querySelector("h3")?.textContent.trim() || "")
+                        ? (
+                            card.querySelector("h3")
+                                ?.textContent.trim() || ""
+                        )
                         : "";
 
-                    // Evita manter dados antigos ao iniciar um novo contato.
                     form.reset();
+
                     nomeInput.setCustomValidity("");
                     telefoneInput.setCustomValidity("");
+                    atualizarFeedback("");
 
-                    if (!modal.open) modal.showModal();
+                    if (!modal.open) {
+                        modal.showModal();
+                    }
+
                     nomeInput.focus();
                 });
             });
 
-            closeButton.addEventListener("click", () => modal.close());
-
-            modal.addEventListener("click", event => {
-                if (event.target === modal) modal.close();
+            closeButton.addEventListener("click", () => {
+                if (!enviando) {
+                    modal.close();
+                }
             });
 
-            // Máscara automática: (48) 98506-7574 ou (48) 3333-4444.
+            modal.addEventListener("click", event => {
+                if (!enviando && event.target === modal) {
+                    modal.close();
+                }
+            });
+
+            // Evita fechar o formulário durante o envio com ESC.
+            modal.addEventListener("cancel", event => {
+                if (enviando) {
+                    event.preventDefault();
+                }
+            });
+
+            /* ========================================
+               MÁSCARA AUTOMÁTICA DE TELEFONE
+            ======================================== */
+
             telefoneInput.addEventListener("input", () => {
-                let numero = telefoneInput.value.replace(/\D/g, "").slice(0, 11);
+                let numero = telefoneInput.value
+                    .replace(/\D/g, "")
+                    .slice(0, 11);
 
                 if (numero.length > 6) {
                     const prefixo = numero.length > 10 ? 7 : 6;
+
                     numero =
                         `(${numero.slice(0, 2)}) ` +
                         `${numero.slice(2, prefixo)}-${numero.slice(prefixo)}`;
+
                 } else if (numero.length > 2) {
                     numero = `(${numero.slice(0, 2)}) ${numero.slice(2)}`;
+
                 } else if (numero.length > 0) {
                     numero = `(${numero}`;
                 }
@@ -287,51 +328,181 @@ document.addEventListener("DOMContentLoaded", () => {
                 nomeInput.setCustomValidity("");
             });
 
-            form.addEventListener("submit", event => {
+            /* ========================================
+               ENVIAR FORMULÁRIO PARA A ONE360
+            ======================================== */
+
+            form.addEventListener("submit", async event => {
                 event.preventDefault();
+
+                if (enviando) return;
 
                 const nome = nomeInput.value.trim();
                 const telefone = telefoneInput.value.trim();
                 const email = emailInput.value.trim();
                 const telefoneNumeros = telefone.replace(/\D/g, "");
 
-                if (!nome) {
-                    nomeInput.setCustomValidity("Por favor, informe seu nome.");
+                nomeInput.setCustomValidity("");
+                telefoneInput.setCustomValidity("");
+
+                // Validar nome.
+                if (nome.length < 2) {
+                    nomeInput.setCustomValidity(
+                        "Informe seu nome com pelo menos 2 caracteres."
+                    );
+
                     nomeInput.reportValidity();
                     return;
                 }
 
+                // Validar telefone.
                 if (!/^\d{10,11}$/.test(telefoneNumeros)) {
                     telefoneInput.setCustomValidity(
                         "Informe um telefone com DDD, contendo 10 ou 11 dígitos."
                     );
+
                     telefoneInput.reportValidity();
                     return;
                 }
 
-                // O e-mail é validado pelo input type="email" no HTML.
-                const mensagem = [
-                    "Olá! Gostaria de saber mais sobre os serviços da SMS Homologado.",
-                    "",
-                    ...(creditoSelecionado
-                        ? [`*Exemplo de uso de interesse:* ${creditoSelecionado}`, ""]
-                        : []),
-                    "*Dados para contato:*",
-                    "",
-                    `*Nome:* ${nome}`,
-                    `*Telefone:* ${telefone}`,
-                    `*E-mail:* ${email}`,
-                    "",
-                    "Poderiam me orientar sobre a contratação?"
-                ].join("\n");
+                // Inclui a validação do input type="email" no HTML.
+                if (!form.reportValidity()) {
+                    return;
+                }
 
-                const mensagemCodificada = encodeURIComponent(mensagem);
-                const linkWhatsapp = numeroWhatsapp
-                    ? `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`
-                    : `https://wa.me/?text=${mensagemCodificada}`;
+                /* ========================================
+                   ESTADO DE ENVIO
+                ======================================== */
 
-                modal.close();
-                window.location.assign(linkWhatsapp);
+                enviando = true;
+
+                botaoEnviar.disabled = true;
+                botaoEnviar.textContent = "Enviando...";
+
+                closeButton.disabled = true;
+
+                form.setAttribute("aria-busy", "true");
+
+                atualizarFeedback(
+                    "Registrando seu interesse na nossa plataforma..."
+                );
+
+                try {
+                    /* ========================================
+                       REQUISIÇÃO AO NOSSO SERVIDOR
+                    ======================================== */
+
+                    const resposta = await fetch("/api/leads", {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: nome,
+                            phone: telefone,
+                            email: email,
+                            credit: creditoSelecionado
+                        }),
+
+                        signal: AbortSignal.timeout(25000)
+                    });
+
+                    const resultado = await resposta.json()
+                        .catch(() => null);
+
+                    /* ========================================
+                       VERIFICAR CRIAÇÃO DA OPORTUNIDADE
+                    ======================================== */
+
+                    if (
+                        !resposta.ok ||
+                        resultado?.success !== true
+                    ) {
+                        throw new Error(
+                            "Não foi possível confirmar a criação da oportunidade."
+                        );
+                    }
+
+                    /* ========================================
+                       PREPARAR MENSAGEM DO WHATSAPP
+                    ======================================== */
+
+                    const mensagem = [
+                        "Olá! Gostaria de saber mais sobre os serviços da SMS Homologado.",
+                        "",
+
+                        ...(creditoSelecionado
+                            ? [
+                                `*Exemplo de uso de interesse:* ${creditoSelecionado}`,
+                                ""
+                            ]
+                            : []),
+
+                        "*Dados para contato:*",
+                        "",
+
+                        `*Nome:* ${nome}`,
+                        `*Telefone:* ${telefone}`,
+                        `*E-mail:* ${email}`,
+                        "",
+
+                        "Poderiam me orientar sobre a contratação?"
+                    ].join("\n");
+
+                    const mensagemCodificada =
+                        encodeURIComponent(mensagem);
+
+                    const linkWhatsapp = numeroWhatsapp
+                        ? `https://wa.me/${numeroWhatsapp}?text=${mensagemCodificada}`
+                        : `https://wa.me/?text=${mensagemCodificada}`;
+
+                    /* ========================================
+                       CONFIRMAÇÃO E REDIRECIONAMENTO
+                    ======================================== */
+
+                    atualizarFeedback(
+                        "Cadastro realizado! Abrindo WhatsApp...",
+                        "#008d3f"
+                    );
+
+                    modal.close();
+
+                    window.location.assign(linkWhatsapp);
+
+                } catch (erro) {
+                    /* ========================================
+                       TRATAMENTO DE ERROS
+                    ======================================== */
+
+                    console.error(
+                        "Não foi possível confirmar o envio do lead:",
+                        erro
+                    );
+
+                    atualizarFeedback(
+                        "Não foi possível confirmar seu cadastro. " +
+                        "Aguarde um instante antes de tentar novamente " +
+                        "ou entre em contato com nossa equipe.",
+                        "#c62828"
+                    );
+
+                } finally {
+                    /* ========================================
+                       RESTAURAR FORMULÁRIO
+                    ======================================== */
+
+                    enviando = false;
+
+                    botaoEnviar.disabled = false;
+                    botaoEnviar.innerHTML = htmlOriginalBotao;
+
+                    closeButton.disabled = false;
+
+                    form.removeAttribute("aria-busy");
+                }
             });
         }
     }

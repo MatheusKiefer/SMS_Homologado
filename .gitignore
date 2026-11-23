@@ -1,0 +1,12 @@
+
+# Dependências do Node.js
+node_modules/
+
+# Credenciais da API
+.env
+.env.*
+!.env.example
+
+# Arquivos de log
+npm-debug.log*
+*.log
