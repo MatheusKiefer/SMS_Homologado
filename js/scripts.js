@@ -69,11 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cards.length && prevButton && nextButton && stage) {
             const totalCards = cards.length;
 
-            let activeIndex = cards.findIndex(card =>
-                card.classList.contains("is-active")
-            );
-
-            if (activeIndex === -1) activeIndex = 0;
+            let activeIndex = 0;
 
             function updateCarousel() {
                 cards.forEach((card, index) => {
@@ -188,6 +184,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
+    /* ========================================
+        BOTÃO VOLTAR AO INÍCIO
+    ======================================== */
+
+    const voltarInicio = document.querySelector(".footer-back-link");
+
+    if (voltarInicio) {
+
+        voltarInicio.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            // Respeita a preferência de movimento reduzido.
+            const movimentoReduzido = window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+            // Rola suavemente até o início da página.
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: movimentoReduzido ? "auto" : "smooth"
+            });
+
+        });
+
+    }
 
     /* ========================================
        3. MODAL DE CONTRATAÇÃO + ONE360 + AGRADECIMENTO
