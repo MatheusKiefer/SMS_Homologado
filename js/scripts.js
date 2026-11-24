@@ -720,6 +720,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         "Não foi possível confirmar o envio do lead:",
                         erro
                     );
+                    // Renovar o token para uma possível nova tentativa.
+                    renovarTurnstile();
 
                     atualizarFeedback(
                         "Não foi possível confirmar seu cadastro. " +
