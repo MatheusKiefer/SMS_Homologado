@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         );
 
                         volume.gain.exponentialRampToValueAtTime(
-                            0.025,
+                            0.10,
                             quando + 0.025
                         );
 
@@ -463,6 +463,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedback.style.color = cor;
             }
 
+            /* ========================================
+                RENOVAR VERIFICAÇÃO CLOUDFLARE
+            ======================================== */
+
+            function renovarTurnstile() 
+            {
+
+                if (window.turnstile && typeof window.turnstile.reset === "function") 
+                {
+                    try {window.turnstile.reset();} 
+                    catch (erro) {console.warn("Não foi possível renovar o Turnstile.", erro); }
+                }
+
+            }
+
+
 
             /* ========================================
                7. ABERTURA E FECHAMENTO DO MODAL
@@ -502,6 +518,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (!modal.open) {
                         modal.showModal();
                     }
+                    
+                    // Gerar uma nova verificação ao abrir o formulário.
+                    renovarTurnstile();
+                    nomeInput.focus();
 
                     nomeInput.focus();
                 });
@@ -603,6 +623,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
+                /* ========================================
+                   VALIDAR TOKEN DO CLOUDFLARE TURNSTILE
+                ======================================== */
+
+                const turnstileToken = form.querySelector(
+                    'input[name="cf-turnstile-response"]'
+                )?.value;
+
+                if (!turnstileToken) {
+                    atualizarFeedback(
+                        "Aguarde a verificação de segurança e tente novamente.",
+                        "#c62828"
+                    );
+                    return;
+                }
+
                 // Prepara o áudio ainda durante o clique do usuário.
                 prepararSomConfirmacao();
 
@@ -634,16 +670,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         method: "POST",
 
                         headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json"
-                        },
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
 
-                        body: JSON.stringify({
-                            name: nome,
-                            phone: telefone,
-                            email: email,
-                            credit: creditoSelecionado
-                        }),
+                    body: JSON.stringify({
+                        name: nome,
+                        phone: telefone,
+                        email: email,
+                        credit: creditoSelecionado,
+                        turnstileToken: turnstileToken
+                    }),
 
                         signal: AbortSignal.timeout(25000)
                     });

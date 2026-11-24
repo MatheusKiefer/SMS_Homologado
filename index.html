@@ -1,940 +1,1257 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SMS Homologado</title>
-        <link rel="icon" href="img/favicon-32x32.png">
-        <link rel="stylesheet" href="css/index.css">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-        <script src="js/scripts.js" defer></script>
-    </head>
+<head>
 
-    <body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Homologado</title>
+    <link rel="icon" href="img/favicon-32x32.png">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="js/scripts.js" defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+</head>
+
+<body>
+
+    <!-- ========================================
+         CABEÇALHO - SMS HOMOLOGADO
+    ======================================== -->
+
+    <header class="site-header" id="inicio">
+
+        <nav class="site-nav" aria-label="Navegação principal">
+
+            <!-- LOGOTIPO -->
+
+            <a class="brand" href="#inicio">
+                <img
+                    src="img/SMS_homologado.png"
+                    alt="SMS Homologado"
+                >
+            </a>
+
+            <!-- LINKS DE NAVEGAÇÃO -->
+
+            <ul class="nav-links" id="menu-principal">
+                <li>
+                    <a href="#beneficios">Benefícios</a>
+                </li>
+                <li>
+                    <a href="#solucoes">Soluções</a>
+                </li>
+                <li>
+                    <a href="#planos">Planos</a>
+                </li>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+            </ul>
+
+            <!-- CONTRATAÇÃO -->
+
+            <a
+                type="button"
+                class="btn-quote desktop-cta"
+                id="open-contract-modal"
+            >
+                Quero testar agora
+            </a>
+
+            <!-- MENU MOBILE -->
+
+            <button
+                class="menu-toggle"
+                type="button"
+                aria-controls="menu-principal"
+                aria-expanded="false"
+                aria-label="Abrir menu"
+            >
+                <span
+                    class="menu-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>
 
         <!-- ========================================
-             CABEÇALHO - SMS HOMOLOGADO
+             HERO - SMS HOMOLOGADO
         ======================================== -->
 
-        <header class="site-header" id="inicio">
+        <section
+            class="hero"
+            aria-labelledby="hero-title"
+        >
 
-            <nav class="site-nav"
-               aria-label="Navegação principal">
+            <div class="hero-container">
 
-                <!-- Logotipo -->
-               <a class="brand" href="#inicio">
-                    <img src="img/SMS_homologado.png" alt="SMS Homologado">
-                </a>
+                <div class="hero-content">
 
-                <!-- Links -->
-                <ul class="nav-links" id="menu-principal">
-                    <li><a href="#beneficios">Benefícios</a></li>
-                    <li><a href="#solucoes">Soluções</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
+                    <!-- IDENTIFICAÇÃO -->
 
-                <!-- Contratação -->
-                <a
-                    type="button"
-                    class="btn-quote desktop-cta"
-                    id="open-contract-modal"
-                >
-                    Quero testar agora
-                </a>
+                    <div class="hero-badge">
 
-                <!-- Menu mobile -->
-                <button
-                    class="menu-toggle"
-                    type="button"
-                    aria-controls="menu-principal"
-                    aria-expanded="false"
-                    aria-label="Abrir menu"
-                >
-                    <span class="menu-icon"
-                          aria-hidden="true"></span>
-                </button>
+                        <span
+                            class="hero-badge-dot"
+                            aria-hidden="true"
+                        ></span>
 
-            </nav>
+                        <span>
+                            COMUNICAÇÃO INTELIGENTE PARA EMPRESAS
+                        </span>
 
-        </header>
+                    </div>
 
+                    <!-- TÍTULO -->
 
-        <main>
+                    <h1
+                        class="hero-title"
+                        id="hero-title"
+                    >
+                        Suas mensagens no<br>
+                        caminho certo.
 
-            <!-- ========================================
-             HERO - SMS HOMOLOGADO
-            ======================================== -->
-
-            <section class="hero" aria-labelledby="hero-title">
-                <div class="hero-container">
-                    <div class="hero-content">
-
-                        <!-- Identificação -->
-                        <div class="hero-badge">
-                            <span class="hero-badge-dot"
-                                aria-hidden="true">
-                            </span>
-
-                            <span>
-                               COMUNICAÇÃO INTELIGENTE PARA EMPRESAS
-                            </span>
-                        </div>
-
-                        <!-- Título -->
-                        <h1 class="hero-title" id="hero-title">
-                            Suas mensagens no<br>
-                            caminho certo.
                         <span class="hero-title-highlight">
                             Seu negócio mais<br>
                             conectado.
                         </span>
-                        </h1>
+                    </h1>
 
-                        <!-- Linha amarela -->
-                        <div class="hero-divider"
-                            aria-hidden="true">
-                        </div>
+                    <!-- LINHA DECORATIVA -->
 
-                        <!-- Descrição -->
-                        <p class="hero-description">
-                            SMS, RCS e e-mail para campanhas,
-                            notificações e relacionamento com
-                            seus clientes, com segurança,
-                            alcance e alta entregabilidade.
-                         </p>
-
-                        <!-- Botões -->
-                        <div class="hero-actions">
-
-                            <a href="#planos"
-                               class="hero-btn-primary">
-                                Conhecer planos
-                                <span aria-hidden="true">→</span>
-                            </a>
-
-                            <a href="https://www.smshomologado.sms.tec.br" class="hero-btn-secondary" >
-                                Teste agora mesmo!
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <!-- Imagem do smartphone -->
-                    <div class="hero-visual">
-                     <img src="img/Imagem-telefone.png" alt="Ilustração de smartphone com mensagens SMS, RCS e e-mail" class="hero-image" fetchpriority="high">
-                    </div>
-
-                </div>
-
-            </section>
-
-
-                <!-- ========================================
-                 BENEFÍCIOS - SMS HOMOLOGADO
-                ======================================== -->
-
-                <section class="benefits"
-                     id="beneficios"
-                     aria-labelledby="benefits-title">
-
-                <div class="benefits-container">
-
-                    <header class="benefits-header">
-
-                        <h2 id="benefits-title">
-                            Por que escolher o SMS Homologado?
-                        </h2>
-
-                        <span class="benefits-divider"
-                          aria-hidden="true">
-                        </span>
-
-                    </header>
-
-                    <div class="benefits-grid">
-
-                        <!-- CARD 1 - AGILIDADE -->
-                        <article class="benefit-card">
-
-                            <div class="benefit-icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
-                                </svg>
-                            </div>
-
-                            <h3>Agilidade</h3>
-
-                            <p>
-                                Envio de mensagens de forma rápida
-                             e em grande escala.
-                            </p>
-
-                        </article>
-
-
-                        <!-- CARD 2 - ACOMPANHAMENTO -->
-                        <article class="benefit-card">
-
-                            <div class="benefit-icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M3 20h18"/>
-                                    <path d="M7 16v-5"/>
-                                    <path d="M12 16V5"/>
-                                    <path d="M17 16V9"/>
-                                </svg>
-                            </div>
-
-                            <h3>Acompanhamento</h3>
-
-                            <p>
-                                Monitore envios, entregas e
-                                resultados em tempo real,
-                                na plataforma.
-                            </p>
-
-                        </article>
-
-
-                        <!-- CARD 3 - INTEGRAÇÃO -->
-                        <article class="benefit-card">
-
-                            <div class="benefit-icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-                                 <path d="m12 2 9 5-9 5-9-5 9-5z"/>
-                                    <path d="m3 12 9 5 9-5"/>
-                                    <path d="m3 17 9 5 9-5"/>
-                                </svg>
-                            </div>
-
-                            <h3>Integração</h3>
-
-                            <p>
-                                Conecte com seus sistemas de
-                                forma simples e flexível
-                                (via API).
-                            </p>
-
-                        </article>
-
-
-                        <!-- CARD 4 - ATENDIMENTO -->
-                        <article class="benefit-card">
-
-                            <div class="benefit-icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="28"
-                                    height="28"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M3 14v-3a9 9 0 0 1 18 0v3"/>
-                                    <path d="M3 14h4v7H5a2 2 0 0 1-2-2v-5z"/>
-                                    <path d="M21 14h-4v7h2a2 2 0 0 0 2-2v-5z"/>
-                                </svg>
-
-                            </div>
-
-                            <h3>Atendimento consultivo</h3>
-
-                            <p>
-                                Suporte especializado para
-                             orientar a melhor estratégia
-                             para o seu negócio.
-                            </p>
-
-                        </article>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ========================================
-             SOLUÇÕES - SMS HOMOLOGADO
-            ======================================== -->
-
-            <section class="solutions" id="solucoes" aria-labelledby="solutions-title">
-
-                <div class="solutions-container">
-
-                    <!-- TÍTULO DA SEÇÃO -->
-
-                    <header class="solutions-header">
-
-                        <h2 id="solutions-title">
-                        Nossas soluções
-                        </h2>
-
-                        <span class="solutions-divider" aria-hidden="true"></span>
-                    </header>
-
-                    <!-- GRID DE SOLUÇÕES -->
-
-                    <div class="solutions-grid">
-
-                        <!-- ========================================
-                         CARD 1 - SMS
-                        ======================================== -->
-
-                        <article class="solution-card solution-sms">
-
-                            <!-- CONTEÚDO ORIGINAL -->
-
-                            <div class="solution-top">
-
-                                <div class="solution-icon">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="30"
-                                     height="30"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     aria-hidden="true">
-
-                                        <path d="M21 11.5a8.5 8.5 0 0 1-12.5
-                                                 7.5L3 21l2-5.5A8.5 8.5
-                                                 0 1 1 21 11.5z"/>
-
-                                        <path d="M9 11h.01"/>
-                                        <path d="M12 11h.01"/>
-                                        <path d="M15 11h.01"/>
-
-                                    </svg>
-
-                                </div>
-
-                                <div class="solution-content">
-
-                                    <h3>SMS</h3>
-
-                                    <p>
-                                        Comunicação direta, rápida e eficiente,
-                                        ideal para campanhas e alertas
-                                        importantes.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <!-- IMAGEM + EXPLICAÇÃO -->
-
-                                <figure class="solution-example">
-
-                                <img src="img/exemplo_sms.png" alt="Exemplo de mensagem SMS em um celular" class="solution-image" loading="lazy">
-
-                                <figcaption>
-                                    O SMS permite enviar mensagens de texto
-                                    diretamente para o celular dos clientes.
-                                    Ideal para avisos, lembretes, confirmações
-                                    e campanhas promocionais.
-                                </figcaption>
-
-                            </figure>
-
-                        </article>
-
-
-                        <!-- ========================================
-                            CARD 2 - RCS
-                        ======================================== -->
-
-                        <article class="solution-card solution-rcs">
-
-                            <!-- CONTEÚDO ORIGINAL -->
-
-                            <div class="solution-top">
-
-                                <div class="solution-icon">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="30"
-                                     height="30"
-                                     viewBox="0 0 24 24"
-                                     fill="none"
-                                     stroke="currentColor"
-                                     stroke-width="2"
-                                     stroke-linecap="round"
-                                     stroke-linejoin="round"
-                                     aria-hidden="true">
-
-                                        <rect x="3" y="3" width="18" height="18" rx="3"/>
-                                        <circle cx="8.5" cy="8.5" r="1.5"/>
-
-                                        <path d="m21 15-5-5L5 21"/>
-                                        <path d="m11 15 2 2"/>
-
-                                    </svg>
-
-                                </div>
-
-                                <div class="solution-content">
-
-                                    <h3>RCS</h3>
-
-                                    <p>
-                                        Mensagens mais ricas, interativas
-                                        e com a identidade da sua marca,
-                                        para gerar mais engajamento.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                           <!-- IMAGEM + EXPLICAÇÃO -->
-
-                            <figure class="solution-example">
-
-                                <img src="img/exemplo_rcs.png" alt="Exemplo de mensagem RCS com imagens e botões interativos" class="solution-image" loading="lazy">
-
-                                <figcaption>
-                                    O RCS vai além do SMS tradicional,
-                                    permitindo mensagens com imagens,
-                                    botões interativos e elementos visuais
-                                    da sua marca em dispositivos compatíveis.
-                                </figcaption>
-
-                            </figure>
-
-                        </article>
-
-
-                        <!-- ========================================
-                             CARD 3 - E-MAIL
-                        ======================================== -->
-
-                        <article class="solution-card solution-email">
-
-                            <!-- CONTEÚDO ORIGINAL -->
-
-                            <div class="solution-top">
-
-                                <div class="solution-icon">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        width="30"
-                                        height="30"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        aria-hidden="true">
-
-                                        <rect x="2" y="4" width="20" height="16" rx="3"/>
-                                        <path d="m2 7 10 7 10-7"/>
-
-                                    </svg>
-
-                                </div>
-
-                                <div class="solution-content">
-
-                                    <h3>E-mail</h3>
-
-                                    <p>
-                                        Alcance, personalize e nutra
-                                        o relacionamento com seus clientes
-                                        em cada etapa da jornada.
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <!-- IMAGEM + EXPLICAÇÃO -->
-
-                            <figure class="solution-example">
-
-                                <img src="img/exemplo_email.png" alt="Exemplo de campanha de e-mail com imagens e conteúdo personalizado" class="solution-image" loading="lazy">
-
-                                <figcaption>
-                                    O E-mail possibilita campanhas com
-                                    imagens, textos personalizados e
-                                    conteúdos mais detalhados, fortalecendo
-                                    o relacionamento com seus clientes.
-                                </figcaption>
-
-                            </figure>
-
-                        </article>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ========================================
-             EXEMPLOS DE USO - SMS HOMOLOGADO
-            ======================================== -->
-
-            <section class="usage-section"
-                    id="planos"
-                    aria-labelledby="usage-title">
-
-                <div class="usage-container">
-
-                    <header class="usage-header">
-
-                        <h2 id="usage-title">
-                         Exemplos de uso
-                        </h2>
-
-                        <span class="usage-divider"
-                            aria-hidden="true"></span>
-
-                        <p>
-                            Descubra quantas mensagens você pode enviar
-                            utilizando seus créditos em nossa plataforma.
-                        </p>
-
-                    </header>
-
-                    <!-- CARROSSEL -->
                     <div
-                        class="usage-carousel"
-                        aria-label="Carrossel de exemplos de uso"
-                        aria-roledescription="carrossel"
-                    >
+                        class="hero-divider"
+                        aria-hidden="true"
+                    ></div>
 
-                        <!-- Anterior -->
-                        <button
-                            class="usage-prev"
-                            type="button"
-                            aria-label="Exemplo anterior"
-                            aria-controls="usage-track"
-                        >
-                            &#10094;
-                        </button>
+                    <!-- DESCRIÇÃO -->
 
-                        <div class="usage-stage">
-
-                            <div class="usage-track" id="usage-track">
-
-                                <!-- R$ 100 -->
-                                <article class="usage-card"
-                                         data-index="0">
-
-                                    <span class="usage-card-label">
-                                        Créditos
-                                    </span>
-
-                                    <h3>R$ 100,00</h3>
-
-                                    <ul>
-                                        <li><span>SMS</span><strong>501</strong></li>
-                                     <li><span>RCS</span><strong>286</strong></li>
-                                     <li><span>E-mail</span><strong>1.053</strong></li>
-                                    </ul>
-
-                                    <a
-                                        href="https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os"
-                                        class="usage-whatsapp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        tabindex="-1"
-                                    >
-                                        <i class="bi bi-whatsapp"
-                                        aria-hidden="true"></i>
-                                        Quero testar agora
-                                    </a>
-
-                                </article>
-
-
-                                <!-- R$ 300 -->
-                                <article class="usage-card"
-                                        data-index="1">
-
-                                     <span class="usage-card-label">
-                                        Créditos
-                                    </span>
-
-                                    <h3>R$ 300,00</h3>
-
-                                    <ul>
-                                        <li><span>SMS</span><strong>1.583</strong></li>
-                                        <li><span>RCS</span><strong>884</strong></li>
-                                        <li><span>E-mail</span><strong>3.352</strong></li>
-                                    </ul>
-
-                                    <a
-                                        href="https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os"
-                                        class="usage-whatsapp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        tabindex="-1"
-                                    >
-                                        <i class="bi bi-whatsapp"
-                                        aria-hidden="true"></i>
-                                        Quero testar agora
-                                    </a>
-
-                                </article>
-
-
-                                <!-- R$ 500 -->
-                                <article class="usage-card"
-                                        data-index="2">
-
-                                    <span class="usage-card-label">
-                                        Créditos
-                                    </span>
-
-                                    <h3>R$ 500,00</h3>
-
-                                    <ul>
-                                        <li><span>SMS</span><strong>2.786</strong></li>
-                                        <li><span>RCS</span><strong>1.517</strong></li>
-                                        <li><span>E-mail</span><strong>6.289</strong></li>
-                                    </ul>
-
-                                    <a
-                                        href="https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os"
-                                        class="usage-whatsapp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        tabindex="-1"
-                                    >
-                                        <i class="bi bi-whatsapp"
-                                        aria-hidden="true"></i>
-                                        Quero testar agora
-                                    </a>
-
-                                </article>
-
-
-                                <!-- R$ 1.000 -->
-                                <article class="usage-card is-active"
-                                        data-index="3">
-
-                                    <span class="usage-card-label">
-                                        Créditos
-                                    </span>
-
-                                    <h3>R$ 1.000,00</h3>
-
-                                    <ul>
-                                        <li><span>SMS</span><strong>5.900</strong></li>
-                                        <li><span>RCS</span><strong>3.130</strong></li>
-                                        <li><span>E-mail</span><strong>14.388</strong></li>
-                                    </ul>
-
-                                    <a
-                                        href="https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os"
-                                        class="usage-whatsapp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                     <i class="bi bi-whatsapp"
-                                           aria-hidden="true">
-                                        </i>
-                                        Quero testar agora
-                                    </a>
-
-                                </article>
-
-
-                                <!-- R$ 2.500 -->
-                                <article class="usage-card"
-                                        data-index="4">
-
-                                    <span class="usage-card-label">
-                                        Créditos
-                                    </span>
-
-                                    <h3>R$ 2.500,00</h3>
-
-                                    <ul>
-                                        <li><span>SMS</span><strong>15.674</strong></li>
-                                        <li><span>RCS</span><strong>8.078</strong></li>
-                                        <li><span>E-mail</span><strong>42.017</strong></li>
-                                    </ul>
-
-                                    <a
-                                        href="https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os"
-                                        class="usage-whatsapp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        tabindex="-1"
-                                    >
-                                        <i class="bi bi-whatsapp"
-                                        aria-hidden="true"></i>
-                                        Quero testar agora
-                                    </a>
-
-                                </article>
-
-
-                                <!-- R$ 5.000 -->
-                                <article class="usage-card"
-                                         data-index="5">
-
-                                    <span class="usage-card-label">
-                                     Créditos
-                                    </span>
-
-                                    <h3>R$ 5.000,00</h3>
-
-                                    <ul>
-                                        <li><span>SMS</span><strong>33.445</strong></li>
-                                        <li><span>RCS</span><strong>16.694</strong></li>
-                                        <li><span>E-mail</span><strong>101.010</strong></li>
-                                    </ul>
-
-                                    <a
-                                        href="https://wa.me/?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os"
-                                        class="usage-whatsapp"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        tabindex="-1"
-                                    >
-                                        <i class="bi bi-whatsapp"
-                                        aria-hidden="true"></i>
-                                        Quero testar agora
-                                    </a>
-
-                                </article>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Próximo -->
-                        <button
-                            class="usage-next"
-                            type="button"
-                            aria-label="Próximo exemplo"
-                            aria-controls="usage-track"
-                        >
-                         &#10095;
-                        </button>
-
-                    </div>
-
-                    <!-- Contador -->
-                    <div class="usage-navigation">
-                        <output
-                            class="usage-counter"
-                            aria-live="polite"
-                        >
-                            4 de 7
-                        </output>
-                    </div>
-
-                    <!-- Observação -->
-                    <p class="usage-note">
-                        As quantidades representam possibilidades
-                        individuais de utilização dos créditos
-                        em cada serviço.
+                    <p class="hero-description">
+                        SMS, RCS e e-mail para campanhas,
+                        notificações e relacionamento com
+                        seus clientes, com segurança,
+                        alcance e alta entregabilidade.
                     </p>
 
-                    <!-- Acesso à plataforma -->
-                    <div class="usage-actions">
+                    <!-- BOTÕES -->
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="#planos"
+                            class="hero-btn-primary"
+                        >
+                            Conhecer planos
+
+                            <span aria-hidden="true">
+                                &rarr;
+                            </span>
+                        </a>
+
                         <a
                             href="https://www.smshomologado.sms.tec.br"
-                            class="usage-btn"
+                            class="hero-btn-secondary"
                         >
                             Teste agora mesmo!
                         </a>
+
                     </div>
 
                 </div>
 
-            </section>
+                <!-- IMAGEM DO SMARTPHONE -->
 
-        </main>
+                <div class="hero-visual">
+
+                    <img
+                        src="img/Imagem-telefone.png"
+                        alt="Ilustração de smartphone com mensagens SMS, RCS e e-mail"
+                        class="hero-image"
+                        fetchpriority="high"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
 
         <!-- ========================================
-           MODAL DE CONTRATAÇÃO - SMS HOMOLOGADO
+             BENEFÍCIOS - SMS HOMOLOGADO
         ======================================== -->
 
-        <dialog class="contract-modal" id="contract-modal" aria-labelledby="contract-title" aria-describedby="contract-description">
+        <section
+            class="benefits"
+            id="beneficios"
+            aria-labelledby="benefits-title"
+        >
 
-            <form class="contract-form" id="contract-form">
+            <div class="benefits-container">
 
-                <!-- CABEÇALHO DO MODAL -->
+                <header class="benefits-header">
 
-                <header class="contract-header">
+                    <h2 id="benefits-title">
+                        Por que escolher o SMS Homologado?
+                    </h2>
 
-                    <div>
-                        <h2 id="contract-title">
-                           Vamos conversar?
-                        </h2>
-
-                        <p id="contract-description">
-                         Preencha seus dados para continuar
-                         seu atendimento pelo WhatsApp.
-                        </p>
-                    </div>
-
-                    <!-- FECHAR MODAL -->
-
-                    <button
-                        type="button"
-                        class="contract-close"
-                        aria-label="Fechar formulário"
-                    >
-                        &times;
-                    </button>
+                    <span
+                        class="benefits-divider"
+                        aria-hidden="true"
+                    ></span>
 
                 </header>
 
-                <!-- NOME -->
+                <div class="benefits-grid">
 
-                <div class="contract-field">
+                    <!-- CARD 1 - AGILIDADE -->
 
-                    <label for="contract-name">
-                        Nome
-                    </label>
+                    <article class="benefit-card">
 
-                    <input
-                        type="text"
-                        id="contract-name"
-                        name="nome"
-                        placeholder="Digite seu nome"
-                        autocomplete="name"
-                        maxlength="120"
-                        required
-                    >
+                        <div class="benefit-icon">
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"
+                                />
+                            </svg>
+
+                        </div>
+
+                        <h3>Agilidade</h3>
+
+                        <p>
+                            Envio de mensagens de forma rápida
+                            e em grande escala.
+                        </p>
+
+                    </article>
+
+
+                    <!-- CARD 2 - ACOMPANHAMENTO -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon">
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M3 20h18"/>
+                                <path d="M7 16v-5"/>
+                                <path d="M12 16V5"/>
+                                <path d="M17 16V9"/>
+                            </svg>
+
+                        </div>
+
+                        <h3>Acompanhamento</h3>
+
+                        <p>
+                            Monitore envios, entregas e
+                            resultados em tempo real,
+                            na plataforma.
+                        </p>
+
+                    </article>
+
+
+                    <!-- CARD 3 - INTEGRAÇÃO -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon">
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="m12 2 9 5-9 5-9-5 9-5z"/>
+                                <path d="m3 12 9 5 9-5"/>
+                                <path d="m3 17 9 5 9-5"/>
+                            </svg>
+
+                        </div>
+
+                        <h3>Integração</h3>
+
+                        <p>
+                            Conecte com seus sistemas de
+                            forma simples e flexível
+                            (via API).
+                        </p>
+
+                    </article>
+
+
+                    <!-- CARD 4 - ATENDIMENTO -->
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon">
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M3 14v-3a9 9 0 0 1 18 0v3"/>
+                                <path d="M3 14h4v7H5a2 2 0 0 1-2-2v-5z"/>
+                                <path d="M21 14h-4v7h2a2 2 0 0 0 2-2v-5z"/>
+                            </svg>
+
+                        </div>
+
+                        <h3>Atendimento consultivo</h3>
+
+                        <p>
+                            Suporte especializado para
+                            orientar a melhor estratégia
+                            para o seu negócio.
+                        </p>
+
+                    </article>
 
                 </div>
 
-                <!-- TELEFONE -->
+            </div>
 
-                <div class="contract-field">
+        </section>
 
-                    <label for="contract-phone">
-                     Telefone
-                    </label>
 
-                    <input
-                        type="tel"
-                        id="contract-phone"
-                        name="telefone"
-                        placeholder="(11) 99999-9999"
-                        autocomplete="tel-national"
-                        inputmode="numeric"
-                        maxlength="15"
-                        required
-                    >
+        <!-- ========================================
+             SOLUÇÕES - SMS HOMOLOGADO
+        ======================================== -->
+
+        <section
+            class="solutions"
+            id="solucoes"
+            aria-labelledby="solutions-title"
+        >
+
+            <div class="solutions-container">
+
+                <header class="solutions-header">
+
+                    <h2 id="solutions-title">
+                        Nossas soluções
+                    </h2>
+
+                    <span
+                        class="solutions-divider"
+                        aria-hidden="true"
+                    ></span>
+
+                </header>
+
+
+                <!-- GRID DE SOLUÇÕES -->
+
+                <div class="solutions-grid">
+
+                    <!-- ========================================
+                         CARD 1 - SMS
+                    ======================================== -->
+
+                    <article class="solution-card solution-sms">
+
+                        <div class="solution-top">
+
+                            <div class="solution-icon">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="30"
+                                    height="30"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M21 11.5a8.5 8.5 0 0 1-12.5 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5z"
+                                    />
+
+                                    <path d="M9 11h.01"/>
+                                    <path d="M12 11h.01"/>
+                                    <path d="M15 11h.01"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="solution-content">
+
+                                <h3>SMS</h3>
+
+                                <p>
+                                    Comunicação direta, rápida e eficiente,
+                                    ideal para campanhas e alertas
+                                    importantes.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <figure class="solution-example">
+
+                            <img
+                                src="img/exemplo_sms.png"
+                                alt="Exemplo de mensagem SMS em um celular"
+                                class="solution-image"
+                                loading="lazy"
+                            >
+
+                            <figcaption>
+                                O SMS permite enviar mensagens de texto
+                                diretamente para o celular dos clientes.
+                                Ideal para avisos, lembretes, confirmações
+                                e campanhas promocionais.
+                            </figcaption>
+
+                        </figure>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 2 - RCS
+                    ======================================== -->
+
+                    <article class="solution-card solution-rcs">
+
+                        <div class="solution-top">
+
+                            <div class="solution-icon">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="30"
+                                    height="30"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="3"
+                                        y="3"
+                                        width="18"
+                                        height="18"
+                                        rx="3"
+                                    />
+
+                                    <circle
+                                        cx="8.5"
+                                        cy="8.5"
+                                        r="1.5"
+                                    />
+
+                                    <path d="m21 15-5-5L5 21"/>
+                                    <path d="m11 15 2 2"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="solution-content">
+
+                                <h3>RCS</h3>
+
+                                <p>
+                                    Mensagens mais ricas, interativas
+                                    e com a identidade da sua marca,
+                                    para gerar mais engajamento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <figure class="solution-example">
+
+                            <img
+                                src="img/exemplo_rcs.png"
+                                alt="Exemplo de mensagem RCS com imagens e botões interativos"
+                                class="solution-image"
+                                loading="lazy"
+                            >
+
+                            <figcaption>
+                                O RCS vai além do SMS tradicional,
+                                permitindo mensagens com imagens,
+                                botões interativos e elementos visuais
+                                da sua marca em dispositivos compatíveis.
+                            </figcaption>
+
+                        </figure>
+
+                    </article>
+
+
+                    <!-- ========================================
+                         CARD 3 - E-MAIL
+                    ======================================== -->
+
+                    <article class="solution-card solution-email">
+
+                        <div class="solution-top">
+
+                            <div class="solution-icon">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="30"
+                                    height="30"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="4"
+                                        width="20"
+                                        height="16"
+                                        rx="3"
+                                    />
+
+                                    <path d="m2 7 10 7 10-7"/>
+                                </svg>
+
+                            </div>
+
+                            <div class="solution-content">
+
+                                <h3>E-mail</h3>
+
+                                <p>
+                                    Alcance, personalize e nutra
+                                    o relacionamento com seus clientes
+                                    em cada etapa da jornada.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <figure class="solution-example">
+
+                            <img
+                                src="img/exemplo_email.png"
+                                alt="Exemplo de campanha de e-mail com imagens e conteúdo personalizado"
+                                class="solution-image"
+                                loading="lazy"
+                            >
+
+                            <figcaption>
+                                O E-mail possibilita campanhas com
+                                imagens, textos personalizados e
+                                conteúdos mais detalhados, fortalecendo
+                                o relacionamento com seus clientes.
+                            </figcaption>
+
+                        </figure>
+
+                    </article>
 
                 </div>
 
-                <!-- E-MAIL -->
+            </div>
 
-                <div class="contract-field">
+        </section>
 
-                    <label for="contract-email">
-                        E-mail
-                    </label>
 
-                    <input
-                        type="email"
-                        id="contract-email"
-                        name="email"
-                        placeholder="seuemail@exemplo.com"
-                        autocomplete="email"
-                        maxlength="254"
-                        required
+        <!-- ========================================
+             EXEMPLOS DE USO - SMS HOMOLOGADO
+        ======================================== -->
+
+        <section
+            class="usage-section"
+            id="planos"
+            aria-labelledby="usage-title"
+        >
+
+            <div class="usage-container">
+
+                <header class="usage-header">
+
+                    <h2 id="usage-title">
+                        Exemplos de uso
+                    </h2>
+
+                    <span
+                        class="usage-divider"
+                        aria-hidden="true"
+                    ></span>
+
+                    <p>
+                        Descubra quantas mensagens você pode enviar
+                        utilizando seus créditos em nossa plataforma.
+                    </p>
+
+                </header>
+
+
+                <!-- ========================================
+                     CARROSSEL DE CRÉDITOS
+                ======================================== -->
+
+                <div
+                    class="usage-carousel"
+                    aria-label="Carrossel de exemplos de uso"
+                    aria-roledescription="carrossel"
+                >
+
+                    <!-- BOTÃO ANTERIOR -->
+
+                    <button
+                        class="usage-prev"
+                        type="button"
+                        aria-label="Exemplo anterior"
+                        aria-controls="usage-track"
                     >
+                        &#10094;
+                    </button>
+
+                    <div class="usage-stage">
+
+                        <div
+                            class="usage-track"
+                            id="usage-track"
+                        >
+
+                            <!-- ========================================
+                                 CARD R$ 100
+                            ======================================== -->
+
+                            <article
+                                class="usage-card"
+                                data-index="0"
+                            >
+
+                                <span class="usage-card-label">
+                                    Créditos
+                                </span>
+
+                                <h3>R$ 100,00</h3>
+
+                                <ul>
+                                    <li>
+                                        <span>SMS</span>
+                                        <strong>501</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>RCS</span>
+                                        <strong>286</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>E-mail</span>
+                                        <strong>1.053</strong>
+                                    </li>
+                                </ul>
+
+                                <a
+                                    href="#contato"
+                                    class="usage-whatsapp"
+                                    tabindex="-1"
+                                >
+                                    <i
+                                        class="bi bi-chat-dots"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    Quero testar agora
+                                </a>
+
+                            </article>
+
+
+                            <!-- ========================================
+                                 CARD R$ 300
+                            ======================================== -->
+
+                            <article
+                                class="usage-card"
+                                data-index="1"
+                            >
+
+                                <span class="usage-card-label">
+                                    Créditos
+                                </span>
+
+                                <h3>R$ 300,00</h3>
+
+                                <ul>
+                                    <li>
+                                        <span>SMS</span>
+                                        <strong>1.583</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>RCS</span>
+                                        <strong>884</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>E-mail</span>
+                                        <strong>3.352</strong>
+                                    </li>
+                                </ul>
+
+                                <a
+                                    href="#contato"
+                                    class="usage-whatsapp"
+                                    tabindex="-1"
+                                >
+                                    <i
+                                        class="bi bi-chat-dots"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    Quero testar agora
+                                </a>
+
+                            </article>
+
+
+                            <!-- ========================================
+                                 CARD R$ 500
+                            ======================================== -->
+
+                            <article
+                                class="usage-card"
+                                data-index="2"
+                            >
+
+                                <span class="usage-card-label">
+                                    Créditos
+                                </span>
+
+                                <h3>R$ 500,00</h3>
+
+                                <ul>
+                                    <li>
+                                        <span>SMS</span>
+                                        <strong>2.786</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>RCS</span>
+                                        <strong>1.517</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>E-mail</span>
+                                        <strong>6.289</strong>
+                                    </li>
+                                </ul>
+
+                                <a
+                                    href="#contato"
+                                    class="usage-whatsapp"
+                                    tabindex="-1"
+                                >
+                                    <i
+                                        class="bi bi-chat-dots"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    Quero testar agora
+                                </a>
+
+                            </article>
+
+
+                            <!-- ========================================
+                                 CARD R$ 1.000
+                            ======================================== -->
+
+                            <article
+                                class="usage-card is-active"
+                                data-index="3"
+                            >
+
+                                <span class="usage-card-label">
+                                    Créditos
+                                </span>
+
+                                <h3>R$ 1.000,00</h3>
+
+                                <ul>
+                                    <li>
+                                        <span>SMS</span>
+                                        <strong>5.900</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>RCS</span>
+                                        <strong>3.130</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>E-mail</span>
+                                        <strong>14.388</strong>
+                                    </li>
+                                </ul>
+
+                                <a
+                                    href="#contato"
+                                    class="usage-whatsapp"
+                                >
+                                    <i
+                                        class="bi bi-chat-dots"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    Quero testar agora
+                                </a>
+
+                            </article>
+
+
+                            <!-- ========================================
+                                 CARD R$ 2.500
+                            ======================================== -->
+
+                            <article
+                                class="usage-card"
+                                data-index="4"
+                            >
+
+                                <span class="usage-card-label">
+                                    Créditos
+                                </span>
+
+                                <h3>R$ 2.500,00</h3>
+
+                                <ul>
+                                    <li>
+                                        <span>SMS</span>
+                                        <strong>15.674</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>RCS</span>
+                                        <strong>8.078</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>E-mail</span>
+                                        <strong>42.017</strong>
+                                    </li>
+                                </ul>
+
+                                <a
+                                    href="#contato"
+                                    class="usage-whatsapp"
+                                    tabindex="-1"
+                                >
+                                    <i
+                                        class="bi bi-chat-dots"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    Quero testar agora
+                                </a>
+
+                            </article>
+
+
+                            <!-- ========================================
+                                 CARD R$ 5.000
+                            ======================================== -->
+
+                            <article
+                                class="usage-card"
+                                data-index="5"
+                            >
+
+                                <span class="usage-card-label">
+                                    Créditos
+                                </span>
+
+                                <h3>R$ 5.000,00</h3>
+
+                                <ul>
+                                    <li>
+                                        <span>SMS</span>
+                                        <strong>33.445</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>RCS</span>
+                                        <strong>16.694</strong>
+                                    </li>
+
+                                    <li>
+                                        <span>E-mail</span>
+                                        <strong>101.010</strong>
+                                    </li>
+                                </ul>
+
+                                <a
+                                    href="#contato"
+                                    class="usage-whatsapp"
+                                    tabindex="-1"
+                                >
+                                    <i
+                                        class="bi bi-chat-dots"
+                                        aria-hidden="true"
+                                    ></i>
+
+                                    Quero testar agora
+                                </a>
+
+                            </article>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTÃO PRÓXIMO -->
+
+                    <button
+                        class="usage-next"
+                        type="button"
+                        aria-label="Próximo exemplo"
+                        aria-controls="usage-track"
+                    >
+                        &#10095;
+                    </button>
 
                 </div>
 
-                <!-- BOTÃO AVANÇAR -->
 
-                <button type="submit" class="contract-submit">
-                    Enviar solicitação
-                    <span aria-hidden="true">
-                    &rarr;
-                    </span>
-                </button>
+                <!-- CONTADOR -->
+
+                <div class="usage-navigation">
+
+                    <output
+                        class="usage-counter"
+                        aria-live="polite"
+                    >
+                        4 de 6
+                    </output>
+
+                </div>
+
 
                 <!-- OBSERVAÇÃO -->
 
-                <p class="contract-note">
-                    Seus dados serão utilizados para
-                    preparar sua mensagem de atendimento.
+                <p class="usage-note">
+                    As quantidades representam possibilidades
+                    individuais de utilização dos créditos
+                    em cada serviço.
                 </p>
 
-            </form>
 
-        </dialog>
+                <!-- ACESSO À PLATAFORMA -->
 
-    </body>
+                <div class="usage-actions">
+
+                    <a
+                        href="https://www.smshomologado.sms.tec.br"
+                        class="usage-btn"
+                    >
+                        Teste agora mesmo!
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         MODAL DE CONTRATAÇÃO
+         FORMULÁRIO + LGPD + ONE360
+    ======================================== -->
+
+    <dialog
+        class="contract-modal"
+        id="contract-modal"
+        aria-labelledby="contract-title"
+        aria-describedby="contract-description"
+    >
+
+        <form
+            class="contract-form"
+            id="contract-form"
+        >
+
+            <!-- ========================================
+                 CABEÇALHO DO MODAL
+            ======================================== -->
+
+            <header class="contract-header">
+
+                <div>
+
+                    <h2 id="contract-title">
+                        Vamos conversar?
+                    </h2>
+
+                    <p id="contract-description">
+                        Preencha seus dados para solicitar
+                        atendimento. Nossa equipe entrará
+                        em contato com você em breve.
+                    </p>
+
+                </div>
+
+
+                <!-- FECHAR MODAL -->
+
+                <button
+                    type="button"
+                    class="contract-close"
+                    aria-label="Fechar formulário"
+                >
+                    &times;
+                </button>
+
+            </header>
+
+
+            <!-- ========================================
+                 CAMPO NOME
+            ======================================== -->
+
+            <div class="contract-field">
+
+                <label for="contract-name">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="contract-name"
+                    name="nome"
+                    placeholder="Digite seu nome"
+                    autocomplete="name"
+                    minlength="2"
+                    maxlength="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ========================================
+                 CAMPO TELEFONE
+            ======================================== -->
+
+            <div class="contract-field">
+
+                <label for="contract-phone">
+                    Telefone
+                </label>
+
+                <input
+                    type="tel"
+                    id="contract-phone"
+                    name="telefone"
+                    placeholder="(11) 99999-9999"
+                    autocomplete="tel-national"
+                    inputmode="numeric"
+                    maxlength="15"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ========================================
+                 CAMPO E-MAIL
+            ======================================== -->
+
+            <div class="contract-field">
+
+                <label for="contract-email">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="contract-email"
+                    name="email"
+                    placeholder="seuemail@exemplo.com"
+                    autocomplete="email"
+                    maxlength="254"
+                    required
+                >
+
+            </div>
+            
+            <!-- ========================================
+            VERIFICAÇÃO DE SEGURANÇA - TURNSTILE
+            ======================================== -->
+
+            <div
+                class="cf-turnstile"
+                data-sitekey="1x00000000000000000000AA"
+                data-theme="light"
+                data-size="flexible"
+            ></div>
+
+            <!-- ========================================
+                 BOTÃO ENVIAR
+            ======================================== -->
+
+            <button
+                type="submit"
+                class="contract-submit"
+            >
+                Enviar solicitação
+
+                <span aria-hidden="true">
+                    &rarr;
+                </span>
+            </button>
+
+
+            <!-- ========================================
+                 AVISO DE PRIVACIDADE
+            ======================================== -->
+
+            <p
+                class="contract-note"
+                id="contract-privacy-note"
+            >
+                Seus dados serão usados para registrar
+                sua solicitação e permitir que nossa equipe
+                entre em contato sobre os serviços
+                da SMS Homologado.
+            </p>
+
+
+            <!-- ========================================
+                 INFORMAÇÕES SOBRE USO DOS DADOS
+            ======================================== -->
+
+            <details
+                class="contract-note"
+                id="informacoes-privacidade"
+            >
+
+                <summary>
+                    Como usamos seus dados
+                </summary>
+
+                <p>
+                    Coletamos nome, telefone e e-mail.
+                    Quando você seleciona um exemplo
+                    de créditos, registramos também
+                    esse interesse.
+
+                    As informações são enviadas ao
+                    nosso servidor e registradas em
+                    uma oportunidade na One360,
+                    sistema de atendimento e CRM
+                    usado pela nossa equipe para
+                    acompanhar sua solicitação.
+                </p>
+
+                <p>
+                    O envio deste formulário serve
+                    para solicitar contato sobre nossos
+                    serviços e não representa,
+                    por si só, uma inscrição em
+                    campanhas promocionais.
+                </p>
+
+            </details>
+
+        </form>
+
+    </dialog>
+
 
     <!-- ========================================
          RODAPÉ - SMS HOMOLOGADO
     ======================================== -->
 
-    <footer class="site-footer" id="contato">
+    <footer
+        class="site-footer"
+        id="contato"
+    >
 
         <div class="footer-container">
 
-            <!-- CONTEÚDO PRINCIPAL -->
-
             <div class="footer-grid">
 
-                <!-- LOGO DA EMPRESA -->
+                <!-- ========================================
+                     LOGOTIPO DA EMPRESA
+                ======================================== -->
 
                 <div class="footer-brand">
 
-                    <a href="#inicio" class="footer-logo">
+                    <a
+                        href="#inicio"
+                        class="footer-logo"
+                    >
 
-                     <img
+                        <img
                             src="img/SMS_homologado.png"
                             alt="SMS Homologado"
                         >
@@ -950,10 +1267,14 @@
                 </div>
 
 
-                <!-- NAVEGAÇÃO -->
+                <!-- ========================================
+                     NAVEGAÇÃO DO RODAPÉ
+                ======================================== -->
 
-                <nav class="footer-nav"
-                     aria-label="Navegação do rodapé">
+                <nav
+                    class="footer-nav"
+                    aria-label="Navegação do rodapé"
+                >
 
                     <h2>Navegação</h2>
 
@@ -978,7 +1299,9 @@
                 </nav>
 
 
-                <!-- CONTATO -->
+                <!-- ========================================
+                     CONTATO
+                ======================================== -->
 
                 <div class="footer-contact">
 
@@ -996,6 +1319,7 @@
                         type="button"
                         class="btn-quote footer-contact-btn"
                     >
+
                         Falar com um especialista
 
                         <span aria-hidden="true">
@@ -1003,6 +1327,7 @@
                         </span>
 
                     </button>
+
 
                     <!-- ACESSAR PLATAFORMA -->
 
@@ -1019,14 +1344,19 @@
 
 
             <!-- ========================================
-                 ÁREA DA ANATEL
+                 ÁREA REGULATÓRIA - ANATEL
             ======================================== -->
 
             <div class="footer-regulatory">
 
                 <div class="footer-anatel">
 
-                    <img src="img/logo_anatel.png" alt="Anatel - Agência Nacional de Telecomunicações" class="footer-anatel-logo" loading="lazy">
+                    <img
+                        src="img/logo_anatel.png"
+                        alt="Anatel - Agência Nacional de Telecomunicações"
+                        class="footer-anatel-logo"
+                        loading="lazy"
+                    >
 
                 </div>
 
@@ -1044,14 +1374,19 @@
             </div>
 
 
-            <!-- LINHA DIVISÓRIA -->
+            <!-- ========================================
+                 LINHA DIVISÓRIA
+            ======================================== -->
 
-            <div class="footer-divider"
-                aria-hidden="true">
-            </div>
+            <div
+                class="footer-divider"
+                aria-hidden="true"
+            ></div>
 
 
-            <!-- PARTE INFERIOR -->
+            <!-- ========================================
+                 PARTE INFERIOR DO RODAPÉ
+            ======================================== -->
 
             <div class="footer-bottom">
 
@@ -1060,12 +1395,15 @@
                     Todos os direitos reservados.
                 </p>
 
-                <a href="#inicio" class="footer-back-link">
+                <a
+                    href="#inicio"
+                    class="footer-back-link"
+                >
 
                     Voltar ao início
 
                     <span aria-hidden="true">
-                     &uarr;
+                        &uarr;
                     </span>
 
                 </a>
@@ -1075,5 +1413,7 @@
         </div>
 
     </footer>
+
+</body>
 
 </html>
