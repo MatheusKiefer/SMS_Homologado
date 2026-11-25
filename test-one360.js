@@ -1,8 +1,3 @@
-
-/* ========================================
-   TESTE DE CONEXÃO - API ONE360
-======================================== */
-
 require("dotenv").config();
 
 const BASE_URL = process.env.ONE360_BASE_URL;
